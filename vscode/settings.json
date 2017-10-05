@@ -1,0 +1,13 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "C_Cpp.intelliSenseEngine": "Default",
+    "window.zoomLevel": -1,
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.errorSquiggles": "Enabled",
+
+    // Controls if the minimap is shown
+    "editor.minimap.enabled": false,
+
+    // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
+    "editor.tabSize": 2,
+}

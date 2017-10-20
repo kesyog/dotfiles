@@ -117,7 +117,26 @@ if ! shopt -oq posix; then
 fi
 
 # Add cmake to your PATH
-PATH=$PATH:~/cmake-3.8.1-Linux-x86_64/bin
+PATH=~/cmake-3.8.1-Linux-x86_64/bin:$PATH
+
+# Compiled iPhone mounting stuff here
+PATH=$HOME/usr/bin:$PATH
+
+# Scripts for mounting or unmounting iPhone
+mount_ios()
+{
+  mkdir -p ~/ios_mnt 
+  idevicepair pair
+  ifuse ~/ios_mnt
+  nautilus --no-desktop --new-window ~/ios_mnt
+}
+
+unmount_ios()
+{
+  fusermount -u ~/ios_mnt
+  rm -R ~/ios_mnt
+  idevicepair unpair
+}
 
 # boson arm toolchain
 PATH=$PATH:~/boson/bin
@@ -128,6 +147,8 @@ PATH=$PATH:~/.cargo/bin
 # added by Miniconda2 4.3.21 installer
 export PATH="/home/kyogeswaran/miniconda2/bin:$PATH"
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # venv launch
 if [ -n "$VIRTUAL_ENV" ]; then
   . "$VIRTUAL_ENV/bin/activate"
@@ -135,4 +156,3 @@ else
   . ~/.virtualenvs/default/bin/activate
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

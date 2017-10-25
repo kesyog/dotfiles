@@ -144,15 +144,14 @@ PATH=$PATH:~/boson/bin
 # cargo (rust package manager)
 PATH=$PATH:~/.cargo/bin
 
+# Arcanist
+PATH="$PATH:$HOME/dev/lib/arcanist/bin"
+
 # added by Miniconda2 4.3.21 installer
-export PATH="/home/kyogeswaran/miniconda2/bin:$PATH"
+PATH="$HOME/miniconda2/bin:$PATH"
+
+# conda alias
+alias sac='source activate'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# venv launch
-if [ -n "$VIRTUAL_ENV" ]; then
-  . "$VIRTUAL_ENV/bin/activate"
-else
-  . ~/.virtualenvs/default/bin/activate
-fi
 

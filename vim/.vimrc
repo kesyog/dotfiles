@@ -2,6 +2,8 @@
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'jpo/vim-railscasts-theme'
+Plug 'chazy/cscope_maps'
 call plug#end()
 
 " More powerful backspace
@@ -16,7 +18,7 @@ set number
 
 " Color scheme
 syntax enable
-colorscheme molokai
+colorscheme railscasts
 
 filetype plugin indent on
 " use spaces for tabstop

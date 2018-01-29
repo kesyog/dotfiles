@@ -119,6 +119,9 @@ fi
 # Add cmake to your PATH
 PATH=~/cmake-3.8.1-Linux-x86_64/bin:$PATH
 
+# vim key bindings
+set -o vi
+
 # Compiled iPhone mounting stuff here
 PATH=$HOME/usr/bin:$PATH
 

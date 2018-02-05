@@ -12,6 +12,9 @@ fi
 # ------------
 source "/home/kyogeswaran/.fzf/shell/key-bindings.bash"
 
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f'
+
 # Colors
 # JellyX theme
 export FZF_DEFAULT_OPTS="

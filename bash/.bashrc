@@ -141,6 +141,12 @@ unmount_ios()
   idevicepair unpair
 }
 
+# enable conda
+# source $HOME/miniconda2/etc/profile.d/conda.sh
+#PATH=$PATH:~/miniconda2/bin
+. /home/kyogeswaran/miniconda2/etc/profile.d/conda.sh
+conda activate
+
 # boson arm toolchain
 PATH=$PATH:~/boson/bin
 
@@ -150,11 +156,14 @@ PATH=$PATH:~/.cargo/bin
 # Arcanist
 PATH="$PATH:$HOME/dev/lib/arcanist/bin"
 
-# added by Miniconda2 4.3.21 installer
-PATH="$HOME/miniconda2/bin:$PATH"
-
 # conda alias
-alias sac='source activate'
+alias cab='conda activate Bison'
+alias cub='conda env update -f ~/dev/repos/fw-bison/tools/bison.yml'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -s "/home/kyogeswaran/.scm_breeze/scm_breeze.sh" ] && source "/home/kyogeswaran/.scm_breeze/scm_breeze.sh"
+
+# direnv
+eval "$(direnv hook bash)"
 

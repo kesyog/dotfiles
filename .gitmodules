@@ -1,3 +1,9 @@
 [submodule "stowsh"]
 	path = stowsh
 	url = https://github.com/williamsmj/stowsh.git
+[submodule "gdb/gdb-dashboard"]
+	path = gdb/gdb-dashboard
+	url = https://github.com/cyrus-and/gdb-dashboard
+[submodule "gdb/gdb-helpers"]
+	path = gdb/gdb-helpers
+	url = https://github.com/tromey/gdb-helpers.git

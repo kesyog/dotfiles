@@ -215,3 +215,12 @@ alias bazel='$(git rev-parse --show-toplevel)/tools/bazel'
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# use `sudo -E` instead of `sudo` with vim/nvim so that the local vimconfig is used
+sudo() {
+    if [[ $1 == "vim" ]] || [[ $1 == "nvim" ]]; then
+        command sudo -E nvim "${@:2}"
+    else
+        command sudo "$@"
+    fi
+}

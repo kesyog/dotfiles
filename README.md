@@ -1,48 +1,59 @@
 # dotfiles
 
-My dotfiles. Anything useful was probably stolen from [noahp](https://github.com/noahp/dotfiles/).
+Backup of my dotfiles plus a list of helpful utilities in case I need to set up a new machine.
 
-## The essentials
+Anything useful was probably stolen from [noahp](https://github.com/noahp/dotfiles/).
 
-### alacritty
+### TODO
 
-In search of a better alternative that supports emoji 😢
+* Better deploy/undeploy. See dotbot
+* Modify .gdbinit to point to gdb submodules
+* Alacritty config
+* Copy more things from noahp
 
-### conda
+### The essentials
 
-### fzf
+#### alacritty
 
-### i3
+Terminal emulator. In search of an alternative with better emoji support 😢
 
-Currently using i3status-rust for status bar.
+#### conda
 
-### neovim
+#### fzf
 
-### ripgrep
+#### i3
 
-### tmux
+Tiling window manager. Currently using along with i3status-rust status bar.
 
-### vscode
+#### neovim
 
-### zsh
+#### ripgrep
+
+#### tmux
+
+#### vscode
+
+#### zsh
 
 Used with .oh-my-zsh
 
-## Miscellaneous utilities
+### Miscellaneous utilities
 
-### arandr
+#### arandr
 
 Helpful as a starting point for generating xrandr configurations
 
-### bat
+#### bat
 
-### cargo
+Better `cat`
+
+#### cargo
 
 rust package manager. Needed to install some of the other utilities.
 
-### clang-format
+#### clang-format
 
-### direnv
+#### direnv
 
 Set up environments on per-directory basis. For example, to activate a conda environment in a
 particular directory, drop this in an .envrc file in the directory:
@@ -52,41 +63,45 @@ conda activate
 conda activate Bison
 ```
 
-### dtrx
+#### dtrx
 
-### feh
+Unzipping for the lazy
+
+#### feh
 
 Set desktop background
 
-### fd
+#### fd
 
-### gimp
+Better `find`
 
-### gnome-system-monitor
+#### gimp
 
-### pavucontrol
+#### gnome-system-monitor
+
+#### pavucontrol
 
 PulseAudio volume control. Invaluable for configuring input/output devices, including switching
 between A2DP/HFP for wireless headsets.
 
-### PlantUML
+#### PlantUML
 
 Draw various types of diagrams. See [homepage](https://plantuml.com/).
 CLI installation: `sudo apt install plantuml`
 
 VS Code has a great plugin for generating live previews
 
-### scm\_breeze
+#### scm\_breeze
 
 [scm\_breeze](https://github.com/scmbreeze/scm_breeze)
 Allows you to refer to items in `git status` and `git branch` by number rather than full path.
 Also some handy git aliases (e.g. `git status` -> `gs`).
 Configure using $(HOME)/.git.scmbrc
 
-### solaar
+#### solaar
 
 Manage Logitech peripherals
 
-### xclip
+#### xclip
 
 Someday I'll understand Linux clipboards...

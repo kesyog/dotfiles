@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # undeploy dotfiles with stow
+./stowsh/stowsh -D alacritty -t ~/.config/alacritty
 ./stowsh/stowsh -D bash -t ~
 ./stowsh/stowsh -D fzf -t ~
 ./stowsh/stowsh -D gdb -t ~

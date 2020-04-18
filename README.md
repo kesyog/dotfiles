@@ -8,14 +8,9 @@ Anything useful was probably stolen from [noahp](https://github.com/noahp/dotfil
 
 * Better deploy/undeploy. See dotbot
 * Modify .gdbinit to point to gdb submodules
-* Alacritty config
 * Copy more things from noahp
 
 ### The essentials
-
-#### alacritty
-
-Terminal emulator. In search of an alternative with better emoji support 😢
 
 #### conda
 
@@ -38,6 +33,10 @@ Tiling window manager. Currently using along with i3status-rust status bar.
 Used with .oh-my-zsh
 
 ### Miscellaneous utilities
+
+#### alacritty
+
+Terminal emulator. As of v0.4.2, now with better emoji support 💃
 
 #### arandr
 

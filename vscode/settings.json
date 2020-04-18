@@ -1,31 +1,37 @@
 {
-    "workbench.colorTheme": "Monokai",
-    "C_Cpp.intelliSenseEngine": "Default",
-    "window.zoomLevel": -1,
-    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.default.cStandard": "c99",
     "C_Cpp.errorSquiggles": "Enabled",
-
-    // Controls if the minimap is shown
-    "editor.minimap.enabled": false,
-
-    // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
-    "editor.tabSize": 2,
-    "sublimeTextKeymap.promptV3Features": true,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.snippetSuggestions": "top",
+    "C_Cpp.updateChannel": "Insiders",
     "editor.formatOnPaste": true,
-
-    // Controls how the editor should render whitespace characters, possibilities are 'none', 'boundary', and 'all'. The 'boundary' option does not render single spaces between words.
     "editor.renderWhitespace": "boundary",
-    "gitlens.keymap": "alternate",
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true
-    },
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true,
+    "vim.camelCaseMotion.enable": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+    {
+        "before": [
+            "j",
+            "k"
+        ],
+        "after": [
+            "<Esc>"
+        ]
+    }
+],
+"editor.minimap.enabled": false,
+"window.zoomLevel": -1,
+"vim.useSystemClipboard": true,
+"editor.lineNumbers": "relative",
+"cSpell.userWords": [
+    "alexa",
+    "fitbit",
+    "leaderboard",
+    "reprompt"
+],
+"cSpell.ignoreWords": [
+    "steppin"
+],
+"plantuml.jar": "/usr/share/plantuml/plantuml.jar",
 }

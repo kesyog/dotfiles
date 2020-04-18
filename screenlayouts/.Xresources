@@ -1,0 +1,10 @@
+! Fonts {{{
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.hintstyle: hintfull
+#Xft.dpi: 282
+Xft.dpi: 200
+# Dell U2416 monitors are 324mm x 518.4mm (611mm diagonal). 94dpi. 1920x1200
+#Xft.dpi: 94
+! }}}

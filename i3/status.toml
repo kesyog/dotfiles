@@ -1,0 +1,36 @@
+theme = "solarized-dark"
+icons = "awesome"
+
+[[block]]
+block = "f5vpn"
+interval = 5
+
+[[block]]
+block = "bluetooth"
+mac = "2C:41:A1:01:41:88"
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
+
+[[block]]
+block = "cpu"
+interval = 5
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "net"
+device = "wlp59s0"
+ssid = true
+ip = true
+speed_up = false
+speed_down = false
+interval = 15
+
+[[block]]
+block = "time"
+interval = 15
+format = "%a %Y-%m-%d %I:%M %p"

@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/kes/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -123,7 +123,7 @@ alias cat='bat'
 
 set_screen_layout()
 {
-  SCREENLAYOUTS=/home/kes/.screenlayout
+  SCREENLAYOUTS=$HOME/.screenlayout
   if $SCREENLAYOUTS/$1; then
     $HOME/.fehbg > /dev/null 2>&1
   else
@@ -211,7 +211,7 @@ fbra() {
 alias bazel='$(git rev-parse --show-toplevel)/tools/bazel'
 
 # SCM breeze
-[ -s "/home/kes/.scm_breeze/scm_breeze.sh" ] && source "/home/kes/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 # direnv
 eval "$(direnv hook zsh)"

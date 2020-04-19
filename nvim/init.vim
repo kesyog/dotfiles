@@ -18,7 +18,6 @@ Plug 'cespare/vim-toml'
 Plug 'tommcdo/vim-fubitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'aklt/plantuml-syntax'
-"Plug 'uarun/vim-protobuf'
 call plug#end()
 
 " More powerful backspace

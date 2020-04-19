@@ -11,7 +11,7 @@ Plug 'jpo/vim-railscasts-theme'
 Plug 'chazy/cscope_maps'
 Plug 'junegunn/vim-emoji'
 Plug 'bkad/CamelCaseMotion'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'HerringtonDarkholme/yats.vim' "Typescript support
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'cespare/vim-toml'

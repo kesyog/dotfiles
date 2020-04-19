@@ -83,9 +83,11 @@ setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
 
 # zsh-autosuggestions config
 # fetch suggestions asynchronously
+zmodload -a zpty # needed for "completion" autocompletion strategy
+ZSH_AUTOSUGGEST_STRATEGY=completion # suggestion is the same as what tab-completion would do
 ZSH_AUTOSUGGEST_USE_ASYNC="true"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *|cd *"
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *|cd *|?(#c50,)"
 bindkey '^ ' autosuggest-accept
 
 # export MANPATH="/usr/local/man:$MANPATH"

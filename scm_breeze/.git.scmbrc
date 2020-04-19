@@ -112,7 +112,7 @@ git_pull_request_alias="gpr"
 # Git Keyboard Shortcuts
 # ----------------------------------------------
 # Keyboard shortcuts are on by default. Set this to 'false' to disable them.
-git_keyboard_shortcuts_enabled="true"
+git_keyboard_shortcuts_enabled="false"
 git_commit_all_keys="\C-x "               # CTRL+x, SPACE
 git_add_and_commit_keys="\C-xc"           # CTRL+x, c
 git_commit_all_with_ci_skip_keys="\C-xv"  # CTRL+x, v    (Appends [ci skip] to message)
@@ -124,6 +124,6 @@ git_add_and_amend_commit_keys="\C-xz"     # CTRL+x, z
 # Expand numbered args for common shell commands
 shell_command_wrapping_enabled="true"
 # Here you can tweak the list of wrapped commands.
-scmb_wrapped_shell_commands="nvim vim emacs gedit cat rm cp mv ln cd code bat"
+scmb_wrapped_shell_commands="nvim vim emacs gedit cat rm cp mv ln cd code bat ls"
 # Add numbered shortcuts to output of ls -l, just like 'git status'
 shell_ls_aliases_enabled="true"

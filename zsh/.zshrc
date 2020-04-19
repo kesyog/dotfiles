@@ -175,11 +175,8 @@ alias invmi='INVOKE_PRODUCT=mira invoke'
 # enable conda
 # source $HOME/miniconda2/etc/profile.d/conda.sh
 #PATH=$PATH:~/miniconda2/bin
-local ps1_backup=$PS1
 . $HOME/miniconda2/etc/profile.d/conda.sh
 conda activate
-export PS1="(\${CONDA_DEFAULT_ENV}) $ps1_backup";
-unset ps1_backup
 
 # Gnome keyring daemon
 if [ -n "$DESKTOP_SESSION" ];then
@@ -246,3 +243,6 @@ sudo() {
         command sudo "$@"
     fi
 }
+
+# starship prompt
+eval "$(starship init zsh)"

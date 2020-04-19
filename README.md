@@ -20,6 +20,9 @@ Helpful as a starting point for generating xrandr configurations
 <summary> bat </summary>
 
 Better `cat`
+```
+cargo install bat
+```
 </details>
 
 <details>
@@ -55,6 +58,9 @@ Unzipping for the lazy
 <summary> exa </summary>
 
 Marginally better `ls`
+```
+cargo install exa
+```
 </details>
 
 <details>
@@ -67,6 +73,9 @@ Set desktop background
 <summary> fd </summary>
 
 Better `find`
+```
+cargo install fd-find
+```
 </details>
 
 <details>
@@ -114,6 +123,9 @@ VS Code's PlantUML extension can generate live previews
 <summary> ripgrep </summary>
 
 Much better `grep`
+```
+cargo install ripgrep
+```
 </details>
 
 <details>
@@ -129,6 +141,15 @@ Configure using [.git.scmbrc](scm_breeze/.git.scmbrc).
 <summary> solaar </summary>
 
 Manage Logitech peripherals
+</details>
+
+<details>
+<summary> starship </summary>
+
+Fancy/silly command line prompt written in rust
+```
+cargo install starship
+```
 </details>
 
 <details>
@@ -152,7 +173,7 @@ Clipboard interface. Don't use directly, but it's a prereq for some other things
 <details>
 <summary> zsh </summary>
 
-Used with .oh-my-zsh. See .zshrc for installed plug-ins.
+Used with .oh-my-zsh. See [zsh/.zshrc](zsh/.zshrc) for installed plug-ins.
 </details>
 
 ## TODO

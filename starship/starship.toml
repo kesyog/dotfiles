@@ -1,0 +1,24 @@
+# ~/.config/starship.toml
+
+prompt_order = [
+    "conda",
+    "username",
+    "hostname",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "rust",
+    "env_var",
+    "custom",
+    "line_break",
+    "jobs",
+    "battery",
+    "character",
+]
+
+[conda]
+symbol = ""
+
+[directory]
+prefix = "in "

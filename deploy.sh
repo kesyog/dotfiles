@@ -9,6 +9,7 @@
 ./stowsh/stowsh i3 -t ~/.config/i3
 ./stowsh/stowsh nvim -t ~/.config/nvim
 ./stowsh/stowsh scm_breeze -t ~
+./stowsh/stowsh starship -t ~/.config
 ./stowsh/stowsh tmux -t ~
 ./stowsh/stowsh vim -t ~
 ./stowsh/stowsh vscode -t ~/.config/Code/User

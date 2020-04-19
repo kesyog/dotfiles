@@ -67,6 +67,8 @@ plugins=(
   command-not-found
   jira
   wd
+  colored-man-pages
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -78,6 +80,13 @@ setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a d
 setopt HIST_IGNORE_SPACE         # Dont record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Dont write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
+
+# zsh-autosuggestions config
+# fetch suggestions asynchronously
+ZSH_AUTOSUGGEST_USE_ASYNC="true"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *|cd *"
+bindkey '^ ' autosuggest-accept
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

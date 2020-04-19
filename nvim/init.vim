@@ -18,6 +18,7 @@ Plug 'cespare/vim-toml'
 Plug 'tommcdo/vim-fubitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'aklt/plantuml-syntax'
+Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
 call plug#end()
 
 " More powerful backspace
@@ -113,3 +114,6 @@ let g:camelcasemotion_key = '<leader>'
 
 " Disable eol at end of file
 set nofixendofline
+
+" Tell vim-commentary plugin to comment using // for C and C++ files
+autocmd FileType c,cpp setlocal commentstring=//\ %s

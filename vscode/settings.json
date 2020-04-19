@@ -34,4 +34,6 @@
     "steppin"
 ],
 "plantuml.jar": "/usr/share/plantuml/plantuml.jar",
+"markdown.extension.preview.autoShowPreviewToSide": true,
+"markdown.extension.toc.githubCompatibility": true,
 }

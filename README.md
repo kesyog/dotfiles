@@ -1,106 +1,167 @@
 # dotfiles
 
-Backup of my dotfiles plus a list of helpful utilities in case I need to set up a new machine.
+Backup of my dotfiles plus a list of helpful utilities for when I inevitably lose everything.
 
-Anything useful was probably stolen from [noahp](https://github.com/noahp/dotfiles/).
+## Utilities
 
-### TODO
+<details>
+<summary> alacritty </summary>
 
-* Better deploy/undeploy. See dotbot
-* Modify .gdbinit to point to gdb submodules
-* Copy more things from noahp
+Terminal emulator. Much better emoji support as of v0.4.2, 💃
+</details>
 
-### The essentials
-
-#### conda
-
-#### fzf
-
-#### i3
-
-Tiling window manager. Currently using along with i3status-rust status bar.
-
-#### neovim
-
-#### ripgrep
-
-#### tmux
-
-#### vscode
-
-#### zsh
-
-Used with .oh-my-zsh
-
-### Miscellaneous utilities
-
-#### alacritty
-
-Terminal emulator. As of v0.4.2, now with better emoji support 💃
-
-#### arandr
+<details>
+<summary> arandr </summary>
 
 Helpful as a starting point for generating xrandr configurations
+</details>
 
-#### bat
+<details>
+<summary> bat </summary>
 
 Better `cat`
+</details>
 
-#### cargo
+<details>
+<summary> cargo </summary>
 
 rust package manager. Needed to install some of the other utilities.
+</details>
 
-#### clang-format
+<details>
+<summary> conda </summary>
+Manage virtual environments
+</details>
 
-#### direnv
+<details>
+<summary> direnv </summary>
 
 Set up environments on per-directory basis. For example, to activate a conda environment in a
 particular directory, drop this in an .envrc file in the directory:
 ```
 . $HOME/miniconda2/etc/profile.d/conda.sh
 conda activate
-conda activate Bison
+conda activate <name>
 ```
+</details>
 
-#### dtrx
+<details>
+<summary> dtrx </summary>
 
 Unzipping for the lazy
+</details>
 
-#### feh
+<details>
+<summary> exa </summary>
+
+Marginally better `ls`
+</details>
+
+<details>
+<summary> feh </summary>
 
 Set desktop background
+</details>
 
-#### fd
+<details>
+<summary> fd </summary>
 
 Better `find`
+</details>
 
-#### gimp
+<details>
+<summary> fzf </summary>
 
-#### gnome-system-monitor
+fuzzy search in the shell and vim
+</details>
 
-#### pavucontrol
+<details>
+<summary> gimp </summary>
+</details>
+
+<details>
+<summary> i3 </summary>
+
+Tiling window manager. Currently using along with i3status-rust status bar.
+</details>
+
+<details>
+<summary> neovim </summary>
+
+Better `vim`
+</details>
+
+<details>
+<summary> pavucontrol </summary>
 
 PulseAudio volume control. Invaluable for configuring input/output devices, including switching
 between A2DP/HFP for wireless headsets.
+</details>
 
-#### PlantUML
+<details>
+<summary> PlantUML </summary>
 
-Draw various types of diagrams. See [homepage](https://plantuml.com/).
-CLI installation: `sudo apt install plantuml`
+Draw various types of diagrams. See [homepage](https://plantuml.com/) for documentation.
+CLI installation:
+```
+sudo apt install plantuml
+```
 
-VS Code has a great plugin for generating live previews
+VS Code's PlantUML extension can generate live previews
+</details>
 
-#### scm\_breeze
+<details>
+<summary> ripgrep </summary>
 
-[scm\_breeze](https://github.com/scmbreeze/scm_breeze)
-Allows you to refer to items in `git status` and `git branch` by number rather than full path.
+Much better `grep`
+</details>
+
+<details>
+<summary> scm_breeze </summary>
+
+Add numbered shortcuts to `git status` and `git branch`.
 Also some handy git aliases (e.g. `git status` -> `gs`).
-Configure using $(HOME)/.git.scmbrc
 
-#### solaar
+Configure using [.git.scmbrc](scm_breeze/.git.scmbrc).
+</details>
+
+<details>
+<summary> solaar </summary>
 
 Manage Logitech peripherals
+</details>
 
-#### xclip
+<details>
+<summary> tmux </summary>
 
-Someday I'll understand Linux clipboards...
+Terminal multiplexer
+</details>
+
+<details>
+<summary> vscode </summary>
+
+For when vim sucks
+</details>
+
+<details>
+<summary> xclip </summary>
+
+Clipboard interface. Don't use directly, but it's a prereq for some other things.
+</details>
+
+<details>
+<summary> zsh </summary>
+
+Used with .oh-my-zsh. See .zshrc for installed plug-ins.
+</details>
+
+## TODO
+
+* Split out per-machine shell and git config
+* Better deploy/undeploy. See [dotbot](https://github.com/anishathalye/dotbot).
+* Modify .gdbinit to point to gdb submodules.
+
+## Acknowledgements
+
+Anything useful was probably stolen from [noahp](https://github.com/noahp/dotfiles/), directly or
+indirectly.

@@ -110,15 +110,29 @@ export K5LOGIN=kyogeswaran@CORP.FITBIT.COM
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias dec2hex='printf "%x\n"'
 alias hex2dec='printf "%u\n"'
-alias vim='nvim'
-alias vi='nvim'
-alias vimdiff='nvim -d'
+# Alias vi and vim to neovim if installed
+if command -v nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+  alias vi='nvim'
+  alias vimdiff='nvim -d'
+else
+  echo neovim not found
+fi
 alias gcan='git commit --amend --no-edit'
-alias cat='bat'
+# Alias cat to bat if installed
+if command -v bat > /dev/null 2>&1; then
+  alias cat='bat'
+else
+  echo bat not found
+fi
+# Alias ls to exa if installed
+if command -v exa > /dev/null 2>&1; then
+  alias ls='exa'
+else
+  echo exa not found
+fi
 #alias alacritty='WINIT_HIDPI_FACTOR=1.0 alacritty'
 
 set_screen_layout()
@@ -146,9 +160,6 @@ alias inva='INVOKE_PRODUCT=atlas invoke'
 alias invme='INVOKE_PRODUCT=meson invoke'
 alias invh='INVOKE_PRODUCT=higgs invoke'
 alias invmi='INVOKE_PRODUCT=mira invoke'
-
-# emoji-fzf
-alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get | tee >(xclip -selection primary) >(xclip -selection secondary) >(xclip -selection clipboard)"
 
 # enable conda
 # source $HOME/miniconda2/etc/profile.d/conda.sh

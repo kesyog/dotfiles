@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -104,16 +106,10 @@ bindkey '^ ' autosuggest-accept
 export EDITOR='nvim'
 export TERMINAL='alacritty'
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
 export SSH_AUTH_SOCK
-
-# kinit
-export K5LOGIN=kyogeswaran@CORP.FITBIT.COM
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -165,13 +161,6 @@ alias s4="set_screen_layout hdmi.sh"
 alias pbpaste="xclip -selection clipboard -o"
 alias pbcopy="xclip -selection clipboard"
 
-# Invoke aliases
-alias inv='invoke'
-alias inva='INVOKE_PRODUCT=atlas invoke'
-alias invme='INVOKE_PRODUCT=meson invoke'
-alias invh='INVOKE_PRODUCT=higgs invoke'
-alias invmi='INVOKE_PRODUCT=mira invoke'
-
 # enable conda
 # source $HOME/miniconda2/etc/profile.d/conda.sh
 #PATH=$PATH:~/miniconda2/bin
@@ -184,27 +173,11 @@ if [ -n "$DESKTOP_SESSION" ];then
     export SSH_AUTH_SOCK
 fi
 
-# Add cmake to your PATH
-PATH=~/cmake-3.8.1-Linux-x86_64/bin:$PATH
-
-# boson arm toolchain
-PATH=$PATH:~/boson/bin
-
 # cargo (rust package manager)
 PATH=$PATH:~/.cargo/bin
 
-# Arcanist
-PATH="$PATH:$HOME/dev/lib/arcanist/bin"
-
-# conda alias
-alias cab='conda activate Bison'
-alias cub='conda env update -f ~/dev/repos/fw-bison/tools/bison.yml'
-
 # Source invoke completion
 source $HOME/dev/repos/invoke/invoke/completion/zsh.completion
-
-# jira url
-JIRA_URL=https://jira.fitbit.com
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -225,9 +198,10 @@ fbra() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-# bazel build system
-# https://wiki.fitbit.com/display/devprod/Bazel+at+Fitbit
-alias bazel='$(git rev-parse --show-toplevel)/tools/bazel'
+# Local config, if present
+if [ -f ~/.zshrc_local ]; then
+  source ~/.zshrc_local
+fi
 
 # SCM breeze
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"

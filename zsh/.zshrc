@@ -164,6 +164,16 @@ alias glcpy="git log --format=%B -1 | pbcopy; echo copied"
 alias glpst="git commit -m \"\$(pbpaste)\""
 alias glpsta="glpst --amend"
 
+# Rebase the current commit onto another commit
+gro() {
+if [ -n "$1" ]; then 
+  git rebase --onto $1 HEAD~${2:-1}
+else
+  echo "Please specify target branch"
+  return 1
+fi
+}
+
 # enable conda
 # source $HOME/miniconda2/etc/profile.d/conda.sh
 #PATH=$PATH:~/miniconda2/bin

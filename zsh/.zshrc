@@ -160,6 +160,9 @@ alias s4="set_screen_layout hdmi.sh"
 # Pipe from pbpaste/to pbcopy to interact with clipboard
 alias pbpaste="xclip -selection clipboard -o"
 alias pbcopy="xclip -selection clipboard"
+alias glcpy="git log --format=%B -1 | pbcopy; echo copied"
+alias glpst="git commit -m \"\$(pbpaste)\""
+alias glpsta="glpst --amend"
 
 # enable conda
 # source $HOME/miniconda2/etc/profile.d/conda.sh

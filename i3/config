@@ -38,7 +38,6 @@ set $right l
 
 # start a terminal
 bindsym $mod+Return exec "alacritty"
-#bindsym $mod+Return exec "WINIT_HIDPI_FACTOR=1.0 alacritty"
 
 # kill focused window
 bindsym $mod+q kill
@@ -228,3 +227,8 @@ exec --no-startup-id dex -ae i3
 
 # Disable tap-to-click on touchpad
 exec --no-startup-id synclient TapButton1=0 TapButton2=0 TapButton3=0
+
+# Set borders
+default_border none
+default_floating_border none
+hide_edge_borders both

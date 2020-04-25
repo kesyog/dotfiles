@@ -17,6 +17,17 @@ Helpful as a starting point for generating xrandr configurations
 </details>
 
 <details>
+<summary> autorandr </summary>
+
+Save and automatically load xrandr configurations. Also allows adding hooks so that you can, for
+example, reset your background via:
+```sh
+#!/bin/sh
+feh --no-fehbg --bg-scale '<path_to_background>'
+```
+</details>
+
+<details>
 <summary> bat </summary>
 
 Better `cat`

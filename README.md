@@ -108,7 +108,9 @@ Tiling window manager. Currently using along with i3status-rust status bar.
 <details>
 <summary> neovim </summary>
 
-Better `vim`
+Better `vim`. Currently using with [coc.nvim](https://github.com/neoclide/coc.nvim) and clangd.
+[Bear](https://github.com/rizsotto/Bear) is useful for generating compilation instructions for
+clangd.
 </details>
 
 <details>

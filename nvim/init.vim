@@ -8,7 +8,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 Plug 'jpo/vim-railscasts-theme'
-Plug 'chazy/cscope_maps'
 Plug 'junegunn/vim-emoji'
 Plug 'bkad/CamelCaseMotion'
 Plug 'HerringtonDarkholme/yats.vim' "Typescript support
@@ -19,6 +18,7 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'aklt/plantuml-syntax'
 Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "Intellisense auto-completion engine
 call plug#end()
 
 " More powerful backspace
@@ -95,12 +95,10 @@ command! Emoji %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
 " Disable cscope loaded message on startup
 set nocscopeverbose
 
-" Highlight text past 100 characters
-"augroup vimrc_autocmds
-"  autocmd BufEnter * highlight OverLength ctermbg=darkred guibg=#8B0000
-"  autocmd BufEnter * match OverLength /\%>100v.\+/
-"augroup END
+" Add a shaded column at the 100-character mark
 set colorcolumn=100
+" Put that column at 72 characters for git commit messages
+autocmd FileType gitcommit setlocal colorcolumn=72
 
 " Use clang-format for = formatting
 autocmd FileType c,cpp setlocal equalprg=clang-format\ -style='file'
@@ -117,3 +115,86 @@ set nofixendofline
 
 " Tell vim-commentary plugin to comment using // for C and C++ files
 autocmd FileType c,cpp setlocal commentstring=//\ %s
+
+"""""""""""""""""""""""
+"coc.nvim configuration
+"""""""""""""""""""""""
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" GoTo code navigation. Use cscope_maps key-bindings
+nmap <silent> <C-\>g <Plug>(coc-definition)
+nmap <silent> <C-\><C-\>g :call CocAction('jumpDefinition', 'tabe')<cr>
+nmap <silent> <C-]>g :call CocAction('jumpDefinition', 'split')<cr>
+nmap <silent> <C-]><C-]>g :call CocAction('jumpDefinition', 'vsplit')<cr>
+nmap <silent> <C-\>s :call CocAction('jumpReferences')<cr>
+" Jump to header file
+nmap <silent> <M-h> :CocCommand clangd.switchSourceHeader<cr>
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Format whole buffer
+nmap <leader><leader>f  <Plug>(coc-format)
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>

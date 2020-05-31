@@ -14,7 +14,7 @@ Plug 'HerringtonDarkholme/yats.vim' "Typescript support
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'cespare/vim-toml'
-Plug 'tommcdo/vim-fubitive'
+Plug 'kmARC/vim-fubitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'aklt/plantuml-syntax'
 Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
@@ -201,3 +201,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Load machine-specific configuration
+source $HOME/init_local.vim

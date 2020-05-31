@@ -45,6 +45,9 @@ set laststatus=2
 set hlsearch
 set noincsearch
 
+" True color (24-bit) support
+set termguicolors
+
 " Color scheme
 colorscheme railscasts
 

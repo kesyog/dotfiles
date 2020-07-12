@@ -146,7 +146,7 @@ bindsym $mod+minus scratchpad show
 
 # Configure lock
 # Locker script generates a pixelated lock screen based on the current display
-# scrot /tmp/screen_locked.png; mogrify -scale 5% -scale 2000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png
+# scrot -o /tmp/screen_locked.png; mogrify -scale 5% -scale 2000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png
 bindsym --release Control+mod1+l exec "~/.local/bin/locker.sh"
 exec --no-startup-id xautolock -time 5 -locker '~/.local/bin/locker.sh' &
 

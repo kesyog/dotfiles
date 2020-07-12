@@ -186,7 +186,7 @@ Clipboard interface. Don't use directly, but it's a prereq for some other things
 <details>
 <summary> zsh </summary>
 
-Used with .oh-my-zsh. See [zsh/.zshrc](zsh/.zshrc) for installed plug-ins.
+Used with zplug plugin manager. See [zsh/.zshrc](zsh/.zshrc) for installed plug-ins.
 </details>
 
 ## TODO

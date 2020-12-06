@@ -19,7 +19,29 @@ Plug 'tpope/vim-rhubarb'
 Plug 'aklt/plantuml-syntax'
 Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Intellisense auto-completion engine
+Plug 'wellle/context.vim'
+Plug 'bfredl/nvim-ipy' "Nvim<->Jupyter integration
 call plug#end()
+
+" Disable context.vim keymappings
+let g:context_add_mappings=0
+" Add some of context.vim's default keymappings, leaving it's H mapping out
+nnoremap <silent> <expr> <C-Y> context#util#map('<C-Y>')
+nnoremap <silent> <expr> <C-E> context#util#map('<C-E>')
+nnoremap <silent> <expr> zz    context#util#map('zz')
+nnoremap <silent> <expr> zb    context#util#map('zb')
+nnoremap <silent> <expr> zt    context#util#map_zt()
+
+" Disable nvim-ipy default keybindings
+let g:nvim_ipy_perform_mappings = 0
+" Run line of code
+" nmap <silent> <leader>rr <Plug>(IPy-Run)
+" Run cell (block)
+nmap <silent> <leader><space> <Plug>(IPy-RunCell)
+" Run entire file
+nmap <leader>ra <Plug>(IPy-RunAll)
+" Don't echo inputs longer than one line
+let g:ipy_truncate_input=1
 
 " More powerful backspace
 set backspace=indent,eol,start
@@ -71,7 +93,7 @@ set clipboard=unnamedplus
 set timeoutlen=750
 
 " Map F5 key to trim trailing whitespace
-:nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+ :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " Create :Find and :Findc command to find using rg. Findc searches only c/c++ files
 " --column: Show column number
@@ -86,7 +108,10 @@ set timeoutlen=750
 " --color: Search color options
 " --type: Restrict to certain pre-defined type. Use rg --type-list to see available types
 command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!*cscope*" --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-command! -bang -nargs=* Rgc call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --type c --type cpp --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+" Search C files only
+command! -bang -nargs=* Rgc call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --type c --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+" Search C and C++ files
+command! -bang -nargs=* Rgcpp call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --type c --type cpp --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 " Automatically save the file notes when idle
 autocmd CursorHold .notes :write
@@ -159,6 +184,13 @@ nmap <silent> <C-\><C-\>g :call CocAction('jumpDefinition', 'tabe')<cr>
 nmap <silent> <C-]>g :call CocAction('jumpDefinition', 'split')<cr>
 nmap <silent> <C-]><C-]>g :call CocAction('jumpDefinition', 'vsplit')<cr>
 nmap <silent> <C-\>s :call CocAction('jumpReferences')<cr>
+
+" Keep some cscope functionality
+" Jump to caller
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-]>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-]><C-]>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+
 " Jump to header file
 nmap <silent> <M-h> :CocCommand clangd.switchSourceHeader<cr>
 

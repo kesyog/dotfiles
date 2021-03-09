@@ -2,7 +2,7 @@
 
 # deploy dotfiles with stow
 ./stowsh/stowsh alacritty -t ~/.config/alacritty
-./stowsh/stowsh bash -t ~
+# ./stowsh/stowsh bash -t ~
 ./stowsh/stowsh fzf -t ~
 ./stowsh/stowsh gdb -t ~
 ./stowsh/stowsh git -t ~

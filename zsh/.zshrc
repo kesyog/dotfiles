@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 # zplug plugin manager
-source ~/.zplug/init.zsh
-zplug "kevinywlui/zlong_alert.zsh" # send notification after long commands 
+source $HOME/.zplug/init.zsh
+zplug "MichaelAquilina/zsh-auto-notify" # send notification after long commands 
 zplug "ael-code/zsh-colored-man-pages"
 zplug "eendroroy/zed-zsh" # Wrapper around z. Navigate to frequently-visited directories
 zplug "mfaerevaag/wd", as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }" # warp directory
@@ -20,7 +20,7 @@ fi
 zplug load
 
 # Don't send a "long command" notification for these commands
-zlong_ignore_cmds="git vim ssh apt audacity gimp"
+AUTO_NOTIFY_IGNORE+=("docker" "apt" "git diff" "git log") 
 
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=10000
@@ -49,79 +49,17 @@ setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
 export EDITOR='nvim'
 export TERMINAL='alacritty'
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
-export SSH_AUTH_SOCK
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias dec2hex='printf "%x\n"'
-alias hex2dec='printf "%u\n"'
-# Alias vi and vim to neovim if installed
-if command -v nvim > /dev/null 2>&1; then
-  alias vim='nvim'
-  alias vi='nvim'
-  alias vimdiff='nvim -d'
-else
-  echo neovim not found
-fi
-alias gcan='git commit --amend --no-edit'
-# Alias cat to bat if installed
-if command -v bat > /dev/null 2>&1; then
-  alias cat='bat'
-else
-  echo bat not found
-fi
-# Alias ls to exa if installed
-if command -v exa > /dev/null 2>&1; then
-  alias ls='exa'
-else
-  echo exa not found
-fi
-#alias alacritty='WINIT_HIDPI_FACTOR=1.0 alacritty'
-
-set_screen_layout()
-{
-  SCREENLAYOUTS=$HOME/.screenlayout
-  if $SCREENLAYOUTS/$1; then
-    $HOME/.fehbg > /dev/null 2>&1
-  else
-    echo "Command failed"
-  fi
-}
-alias s0="set_screen_layout undocked.sh"
-alias s1="set_screen_layout dual.sh"
-alias s2="set_screen_layout projector.sh"
-alias s3="set_screen_layout all.sh"
-alias s4="set_screen_layout hdmi.sh"
-
-# Pipe from pbpaste/to pbcopy to interact with clipboard
-alias pbpaste="xclip -selection clipboard -o"
-alias pbcopy="xclip -selection clipboard"
-alias glcpy="git log --format=%B -1 | pbcopy; echo copied"
-alias glpst="git commit -m \"\$(pbpaste)\""
-alias glpsta="glpst --amend"
-
-# Rebase the current commit onto another commit
-gro() {
-if [ -n "$1" ]; then 
-  git rebase --onto $1 HEAD~${2:-1}
-else
-  echo "Please specify target branch"
-  return 1
-fi
-}
+# Personal aliases
+[ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
 
 # enable conda
-# source $HOME/miniconda2/etc/profile.d/conda.sh
-#PATH=$PATH:~/miniconda2/bin
 . $HOME/miniconda2/etc/profile.d/conda.sh
 conda activate
+
+# ssh
+# export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
+eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
+export SSH_AUTH_SOCK
 
 # Gnome keyring daemon
 if [ -n "$DESKTOP_SESSION" ];then
@@ -130,13 +68,10 @@ if [ -n "$DESKTOP_SESSION" ];then
 fi
 
 # cargo (rust package manager)
-PATH=$PATH:~/.cargo/bin
-
-# Source invoke completion
-source $HOME/dev/repos/invoke/invoke/completion/zsh.completion
+PATH=$PATH:$HOME/.cargo/bin
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # fzf git local branches
 fbr() {
@@ -155,24 +90,18 @@ fbra() {
 }
 
 # Local config, if present
-if [ -f ~/.zshrc_local ]; then
-  source ~/.zshrc_local
+if [ -f $HOME/.zshrc_local ]; then
+  source $HOME/.zshrc_local
 fi
 
 # SCM breeze
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
+export NVM_DIR="/home/kes/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # direnv
 eval "$(direnv hook zsh)"
-
-# use `sudo -E` instead of `sudo` with vim/nvim so that the local vimconfig is used
-sudo() {
-    if [[ $1 == "vim" ]] || [[ $1 == "nvim" ]]; then
-        command sudo -E nvim "${@:2}"
-    else
-        command sudo "$@"
-    fi
-}
 
 # starship prompt
 eval "$(starship init zsh)"

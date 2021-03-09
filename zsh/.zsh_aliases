@@ -1,0 +1,54 @@
+
+alias dec2hex='printf "%x\n"'
+alias hex2dec='printf "%u\n"'
+
+# Alias vi and vim to neovim if installed
+if command -v nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+  alias vi='nvim'
+  alias vimdiff='nvim -d'
+else
+  echo neovim not found
+fi
+
+# Alias cat to bat if installed
+if command -v bat > /dev/null 2>&1; then
+  alias cat='bat'
+else
+  echo bat not found
+fi
+# Alias ls to exa if installed
+if command -v exa > /dev/null 2>&1; then
+  alias ls='exa'
+else
+  echo exa not found
+fi
+
+# Git aliases
+alias glcpy="git log --format=%B -1 | pbcopy; echo copied"
+alias glpst="git commit -m \"\$(pbpaste)\""
+alias glpsta="glpst --amend"
+alias gcan='git commit --amend --no-edit'
+# Rebase the current commit onto another commit
+gro() {
+if [ -n "$1" ]; then 
+  git rebase --onto $1 HEAD~${2:-1}
+else
+  echo "Please specify target branch"
+  return 1
+fi
+}
+
+# Pipe from pbpaste/to pbcopy to interact with clipboard
+alias pbpaste="xclip -selection clipboard -o"
+alias pbcopy="xclip -selection clipboard"
+
+# use `sudo -E` instead of `sudo` with vim/nvim so that the local vimconfig is used
+sudo() {
+    if [[ $1 == "vim" ]] || [[ $1 == "nvim" ]]; then
+        command sudo -E nvim "${@:2}"
+    else
+        command sudo "$@"
+    fi
+}
+

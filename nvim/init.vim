@@ -19,18 +19,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'aklt/plantuml-syntax'
 Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Intellisense auto-completion engine
-Plug 'wellle/context.vim'
 Plug 'bfredl/nvim-ipy' "Nvim<->Jupyter integration
 call plug#end()
-
-" Disable context.vim keymappings
-let g:context_add_mappings=0
-" Add some of context.vim's default keymappings, leaving it's H mapping out
-nnoremap <silent> <expr> <C-Y> context#util#map('<C-Y>')
-nnoremap <silent> <expr> <C-E> context#util#map('<C-E>')
-nnoremap <silent> <expr> zz    context#util#map('zz')
-nnoremap <silent> <expr> zb    context#util#map('zb')
-nnoremap <silent> <expr> zt    context#util#map_zt()
 
 " Disable nvim-ipy default keybindings
 let g:nvim_ipy_perform_mappings = 0

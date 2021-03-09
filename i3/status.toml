@@ -2,8 +2,12 @@ theme = "solarized-dark"
 icons = "awesome"
 
 [[block]]
-block = "f5vpn"
-interval = 5
+block = "toggle"
+text = "4k"
+command_state = "ddcutil getvcp 60 | rg 0x12"
+command_on = "ddcutil setvcp 60 x12"
+command_off = "ddcutil setvcp 60 x11"
+interval = 60
 
 [[block]]
 block = "bluetooth"

@@ -9,6 +9,7 @@
 	editor = nvim
 	autocrlf = input
 	excludesfile = /home/kes/.gitignore_global
+  pager = BAT_PAGER=\"less -R\" delta  --color-only --dark --paging always
 [merge]
 	tool = meld
 [alias]
@@ -21,3 +22,7 @@
 	parallel = 6
 [submodule]
 	fetchJobs = 6
+[interactive]
+  diffFilter = delta --dark --color-only
+[init]
+	defaultBranch = main

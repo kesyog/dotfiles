@@ -53,8 +53,10 @@ export TERMINAL='alacritty'
 [ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
 
 # enable conda
-. $HOME/miniconda2/etc/profile.d/conda.sh
-conda activate
+if [ -f $HOME/miniconda2/etc/profile.d/conda.sh ]; then
+  . $HOME/miniconda2/etc/profile.d/conda.sh
+  conda activate
+fi
 
 # ssh
 # export SSH_KEY_PATH="$HOME/.ssh/rsa_id"

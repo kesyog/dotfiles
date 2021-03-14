@@ -11,12 +11,13 @@ Terminal emulator. Much better emoji support as of v0.4.2, 💃
 
 #### arandr
 
-Helpful as a starting point for generating xrandr configurations
+Helpful as a starting point for quickly generating xrandr configurations
 
 #### autorandr
 
 Save and automatically load xrandr configurations. Also allows adding hooks so that you can, for
 example, reset your background via:
+
 ```sh
 #!/bin/sh
 feh --no-fehbg --bg-scale '<path_to_background>'
@@ -24,6 +25,7 @@ feh --no-fehbg --bg-scale '<path_to_background>'
 #### bat
 
 Better `cat`
+
 ```
 cargo install bat
 ```
@@ -53,7 +55,8 @@ Unzipping for the lazy
 
 #### exa
 
-Marginally better `ls`
+Improved `ls` and `tree`
+
 ```
 cargo install exa
 ```
@@ -65,6 +68,7 @@ Set desktop background
 #### fd
 
 Much better `find`
+
 ```
 cargo install fd-find
 ```
@@ -73,15 +77,14 @@ cargo install fd-find
 
 fuzzy search in the shell and vim
 
-#### gimp
-
 #### i3
 
 Tiling window manager. Currently using along with i3status-rust status bar.
 
 #### neovim
 
-Better `vim`. Currently using with [coc.nvim](https://github.com/neoclide/coc.nvim) and clangd.
+Better `vim`. Currently using with [coc.nvim](https://github.com/neoclide/coc.nvim) + [coc-clangd](https://github.com/clangd/coc-clangd)
++ [coc-rust-analyzer](https://github.com/fannheyward/coc-rust-analyzer).
 [Bear](https://github.com/rizsotto/Bear) is useful for generating compilation instructions for
 clangd.
 
@@ -107,20 +110,24 @@ Much better `grep`
 cargo install ripgrep
 ```
 
-#### scm_breeze
+#### scmpuff/scm\_breeze
 
 Add numbered shortcuts to `git status` and `git branch`.
 Also some handy git aliases (e.g. `git status` -> `gs`).
 
 Configure using [.git.scmbrc](scm_breeze/.git.scmbrc).
 
-#### solaar
+Currently trying out [scmpuff](https://github.com/mroth/scmpuff), a faster, less-featured
+scm\_breeze replacement written in Go.
 
-Manage Logitech peripherals
+#### scrot
+
+Take screenshots
 
 #### starship
 
 Fancy/silly command line prompt written in rust
+
 ```
 cargo install starship
 ```
@@ -143,8 +150,8 @@ Used with zplug plugin manager. See [zsh/.zshrc](zsh/.zshrc) for installed plug-
 
 ## TODO
 
-* Split out per-machine shell and git config
-* Better deploy/undeploy. See [dotbot](https://github.com/anishathalye/dotbot).
+* Better deploy/undeploy. See [Dotfiles page](https://wiki.archlinux.org/index.php/Dotfiles) on the
+Arch wiki.
 * Modify .gdbinit to point to gdb submodules.
 
 ## Acknowledgements

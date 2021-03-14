@@ -98,6 +98,8 @@ fi
 
 # SCM breeze
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+# scmpuff = scm_breeze replacement
+eval "$(scmpuff init -s)"
 
 export NVM_DIR="/home/kes/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -20,6 +20,8 @@ Plug 'aklt/plantuml-syntax'
 Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Intellisense auto-completion engine
 Plug 'bfredl/nvim-ipy' "Nvim<->Jupyter integration
+Plug 'MikeDacre/tmux-zsh-vim-titles'
+Plug 'bfrg/vim-cpp-modern'
 call plug#end()
 
 " Disable nvim-ipy default keybindings

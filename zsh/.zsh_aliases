@@ -33,6 +33,7 @@ alias glcpy="git log --format=%B -1 | pbcopy; echo copied"
 alias glpst="git commit -m \"\$(pbpaste)\""
 alias glpsta="glpst --amend"
 alias gcan='git commit --amend --no-edit'
+alias gsur='git submodule update --init --recursive'
 # Rebase the current commit onto another commit
 gro() {
 if [ -n "$1" ]; then 

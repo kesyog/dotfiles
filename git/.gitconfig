@@ -8,7 +8,7 @@
 [core]
 	editor = nvim
 	autocrlf = input
-	excludesfile = /home/kes/.gitignore_global
+	excludesfile = ~/.gitignore_global
   pager = BAT_PAGER=\"less -R\" delta  --color-only --dark --paging always
 [merge]
 	tool = meld
@@ -17,7 +17,7 @@
 [include]
 	path = ~/.gitconfig-local
 [http]
-	cookiefile = /home/kes/.gitcookies
+	cookiefile = ~/.gitcookies
 [fetch]
 	parallel = 6
 [submodule]
@@ -26,3 +26,5 @@
   diffFilter = delta --dark --color-only
 [init]
 	defaultBranch = main
+[url "git@github.com:"]
+  pushInsteadOf = "https://github.com/"

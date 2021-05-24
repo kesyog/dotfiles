@@ -20,6 +20,7 @@ Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Intellisense auto-completion engine
 Plug 'bfredl/nvim-ipy' "Nvim<->Jupyter integration
 Plug 'bfrg/vim-cpp-modern'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Set pyx version
@@ -226,6 +227,12 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Disable rust plugin integratino with syntastic since we're using the
+" rust-analyzer LSP
+let g:syntastic_rust_checkers = []
+" Autofmt with rustfmt on save
+let g:rustfmt_autosave = 1
 
 " Load machine-specific configuration
 source $HOME/init_local.vim

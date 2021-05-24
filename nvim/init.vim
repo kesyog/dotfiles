@@ -8,7 +8,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 Plug 'jpo/vim-railscasts-theme'
-Plug 'junegunn/vim-emoji'
 Plug 'bkad/CamelCaseMotion'
 Plug 'HerringtonDarkholme/yats.vim' "Typescript support
 Plug 'google/vim-maktaba'
@@ -20,9 +19,15 @@ Plug 'aklt/plantuml-syntax'
 Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Intellisense auto-completion engine
 Plug 'bfredl/nvim-ipy' "Nvim<->Jupyter integration
-Plug 'MikeDacre/tmux-zsh-vim-titles'
 Plug 'bfrg/vim-cpp-modern'
 call plug#end()
+
+" Set pyx version
+if has('python3')
+  set pyx=3
+elseif has('python')
+  set pyx=2
+endif
 
 " Disable nvim-ipy default keybindings
 let g:nvim_ipy_perform_mappings = 0
@@ -107,10 +112,6 @@ command! -bang -nargs=* Rgcpp call fzf#vim#grep('rg --column --line-number --no-
 
 " Automatically save the file notes when idle
 autocmd CursorHold .notes :write
-
-" Auto-complete emoji by pressing Ctrl-X Ctrl-U
-set completefunc=emoji#complete
-command! Emoji %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
 
 " Disable cscope loaded message on startup
 set nocscopeverbose

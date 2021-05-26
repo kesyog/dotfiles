@@ -9,18 +9,19 @@ Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 Plug 'jpo/vim-railscasts-theme'
 Plug 'bkad/CamelCaseMotion'
-Plug 'HerringtonDarkholme/yats.vim' "Typescript support
+Plug 'HerringtonDarkholme/yats.vim' " Typescript support
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'cespare/vim-toml'
-Plug 'kmARC/vim-fubitive'
-Plug 'tpope/vim-rhubarb'
+Plug 'kmARC/vim-fubitive' " Bitbucket integration
+Plug 'tpope/vim-rhubarb' " GitHub integration
 Plug 'aklt/plantuml-syntax'
-Plug 'tpope/vim-commentary' "comment/uncomment using gc(c)
-Plug 'neoclide/coc.nvim', {'branch': 'release'} "Intellisense auto-completion engine
-Plug 'bfredl/nvim-ipy' "Nvim<->Jupyter integration
-Plug 'bfrg/vim-cpp-modern'
-Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-commentary' " comment/uncomment using gc(c)
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense auto-completion engine
+Plug 'bfredl/nvim-ipy' " Nvim<->Jupyter integration
+Plug 'bfrg/vim-cpp-modern' " Better C/C++ syntax highlighting
+Plug 'rust-lang/rust.vim' 
+Plug 'airblade/vim-rooter' "automatically cd to repo root
 call plug#end()
 
 " Set pyx version
@@ -233,6 +234,9 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 let g:syntastic_rust_checkers = []
 " Autofmt with rustfmt on save
 let g:rustfmt_autosave = 1
+
+" Configure root directory patterns for vim-rooter
+let g:rooter_patterns = ['.git', '_darcs', '.hg', '.bzr', '.svn']
 
 " Load machine-specific configuration
 source $HOME/init_local.vim

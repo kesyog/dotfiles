@@ -21,7 +21,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense auto-completion e
 Plug 'bfredl/nvim-ipy' " Nvim<->Jupyter integration
 Plug 'bfrg/vim-cpp-modern' " Better C/C++ syntax highlighting
 Plug 'rust-lang/rust.vim' 
-Plug 'airblade/vim-rooter' "automatically cd to repo root
+"Plug 'airblade/vim-rooter' "automatically cd to repo root
 call plug#end()
 
 " Set pyx version
@@ -237,6 +237,21 @@ let g:rustfmt_autosave = 1
 
 " Configure root directory patterns for vim-rooter
 let g:rooter_patterns = ['.git', '_darcs', '.hg', '.bzr', '.svn']
+
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <leader>z :ZoomToggle<CR>
 
 " Load machine-specific configuration
 source $HOME/init_local.vim

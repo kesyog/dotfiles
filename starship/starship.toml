@@ -11,6 +11,7 @@ format = """\
     $rust\
     $env_var\
     $custom\
+    $time\
     $cmd_duration\
     $line_break\
     $jobs\
@@ -26,3 +27,7 @@ ignore_base = false
 
 [cmd_duration]
 min_time = 5_000
+
+[time]
+disabled = false
+use_12hr = true

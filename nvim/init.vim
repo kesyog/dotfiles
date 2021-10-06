@@ -21,6 +21,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense auto-completion e
 Plug 'bfredl/nvim-ipy' " Nvim<->Jupyter integration
 Plug 'bfrg/vim-cpp-modern' " Better C/C++ syntax highlighting
 Plug 'rust-lang/rust.vim' 
+Plug 'hashivim/vim-terraform'
 "Plug 'airblade/vim-rooter' "automatically cd to repo root
 call plug#end()
 
@@ -93,6 +94,8 @@ set timeoutlen=750
 
 " Map F5 key to trim trailing whitespace
  :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+" Trim trailing whitespace on save
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Create :Find and :Findc command to find using rg. Findc searches only c/c++ files
 " --column: Show column number
@@ -106,11 +109,11 @@ set timeoutlen=750
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 " --type: Restrict to certain pre-defined type. Use rg --type-list to see available types
-command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!*cscope*" --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!*cscope*" --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 " Search C files only
-command! -bang -nargs=* Rgc call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --type c --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Rgc call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --type c --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 " Search C and C++ files
-command! -bang -nargs=* Rgcpp call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --type c --type cpp --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Rgcpp call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --type c --type cpp --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 " Automatically save the file notes when idle
 autocmd CursorHold .notes :write

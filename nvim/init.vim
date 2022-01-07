@@ -20,7 +20,7 @@ Plug 'tpope/vim-commentary' " comment/uncomment using gc(c)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense auto-completion engine
 Plug 'bfredl/nvim-ipy' " Nvim<->Jupyter integration
 Plug 'bfrg/vim-cpp-modern' " Better C/C++ syntax highlighting
-Plug 'rust-lang/rust.vim' 
+Plug 'rust-lang/rust.vim'
 Plug 'hashivim/vim-terraform'
 "Plug 'airblade/vim-rooter' "automatically cd to repo root
 call plug#end()
@@ -112,6 +112,8 @@ autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
 command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!*cscope*" --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 " Search C files only
 command! -bang -nargs=* Rgc call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --type c --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+" Search header files only
+command! -bang -nargs=* Rgh call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --type h --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 " Search C and C++ files
 command! -bang -nargs=* Rgcpp call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --type c --type cpp --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
@@ -208,12 +210,16 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 " Format whole buffer
 nmap <leader><leader>f  <Plug>(coc-format)
+" Apply codeAction to the selected region
+nmap <leader>a :CocAction<CR>
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
 " Mappings using CoCList:
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -231,6 +237,8 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" Use bold text to highlight dead code rather than the default
+highlight link CocFadeOut CocBold
 
 " Disable rust plugin integratino with syntastic since we're using the
 " rust-analyzer LSP

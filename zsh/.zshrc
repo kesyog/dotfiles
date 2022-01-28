@@ -23,8 +23,8 @@ zplug load
 AUTO_NOTIFY_IGNORE+=("docker" "apt" "git diff" "git log") 
 
 export HISTFILE=$HOME/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=12000
+export SAVEHIST=12000
 
 # User configuration
 setopt INC_APPEND_HISTORY            # Append to history file rather than overwriting
@@ -51,12 +51,6 @@ export TERMINAL='alacritty'
 
 # Personal aliases
 [ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
-
-# enable conda
-if [ -f $HOME/miniconda2/etc/profile.d/conda.sh ]; then
-  . $HOME/miniconda2/etc/profile.d/conda.sh
-  conda activate
-fi
 
 # ssh
 # export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
@@ -101,11 +95,28 @@ fi
 # scmpuff = scm_breeze replacement
 eval "$(scmpuff init -s)"
 
-export NVM_DIR="/home/kes/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # direnv
 eval "$(direnv hook zsh)"
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 # starship prompt
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

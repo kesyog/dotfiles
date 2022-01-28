@@ -19,9 +19,10 @@
 [http]
 	cookiefile = ~/.gitcookies
 [fetch]
-	parallel = 6
+	parallel = 24
+  recurseSubmodules = true
 [submodule]
-	fetchJobs = 6
+	fetchJobs = 24
 [interactive]
   diffFilter = delta --dark --color-only
 [init]

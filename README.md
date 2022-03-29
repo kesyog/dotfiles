@@ -38,6 +38,13 @@ Rust package manager. Needed to install some of the other utilities. Install via
 
 Manage virtual environments. One of a million ways of sandboxing Python installations.
 
+#### difftastic
+
+Syntax-aware diff tool
+
+```
+cargo install difftastic
+```
 
 #### direnv
 

@@ -1,6 +1,17 @@
 " Improved C syntax highlighting:
 "https://www.vim.org/scripts/script.php?script_id=3064
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 "vim-plug plugin manager
 call plug#begin()
 Plug 'tpope/vim-fugitive'               " git things
@@ -22,6 +33,7 @@ Plug 'bfredl/nvim-ipy' " Nvim<->Jupyter integration
 Plug 'bfrg/vim-cpp-modern' " Better C/C++ syntax highlighting
 Plug 'rust-lang/rust.vim'
 Plug 'hashivim/vim-terraform'
+Plug 'udalov/kotlin-vim'
 "Plug 'airblade/vim-rooter' "automatically cd to repo root
 call plug#end()
 

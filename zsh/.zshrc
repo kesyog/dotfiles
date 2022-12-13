@@ -68,6 +68,11 @@ PATH=$PATH:$HOME/.cargo/bin
 
 # fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+# Faster fzf using fd-find
+export FZF_DEFAULT_COMMAND="fd ."
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d ."
+
 
 # fzf git local branches
 fbr() {

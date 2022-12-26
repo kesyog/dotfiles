@@ -234,10 +234,10 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 " Format whole buffer
 nmap <leader><leader>f  <Plug>(coc-format)
-" Apply codeAction to the selected region
-nmap <leader>a :CocAction<CR>
+" Apply codeAction at the cursor
+nmap <leader>a <Plug>(coc-codeaction-cursor)
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>ac  <Plug>(coc-codeaction-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Symbol renaming.

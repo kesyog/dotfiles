@@ -66,6 +66,9 @@ fi
 # cargo (rust package manager)
 PATH=$PATH:$HOME/.cargo/bin
 
+# convenient spot to dump random binaries
+PATH=$PATH:$HOME/.local/bin
+
 # fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 # Faster fzf using fd-find

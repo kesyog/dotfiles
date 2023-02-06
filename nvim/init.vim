@@ -227,6 +227,13 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Formatting selected code.
@@ -265,6 +272,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 highlight link CocFadeOut CocBold
 " inlay hint style
 hi CocInlayHint ctermfg=12 guifg=#15aabf
+hi CocHintSign ctermfg=12 guifg=#15aabf
 
 " Disable rust plugin integratino with syntastic since we're using the
 " rust-analyzer LSP

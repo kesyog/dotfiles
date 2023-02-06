@@ -9,7 +9,6 @@
 	editor = nvim
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
-  #pager = BAT_PAGER=\"less -R\" delta  --color-only --dark --paging always
 [diff]
   tool = difftastic
 	external = difft

@@ -72,9 +72,9 @@ PATH=$PATH:$HOME/.local/bin
 # fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 # Faster fzf using fd-find
-export FZF_DEFAULT_COMMAND="fd ."
+export FZF_DEFAULT_COMMAND="fd -I ."
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd -t d ."
+export FZF_ALT_C_COMMAND="fd -I -t d ."
 
 
 # fzf git local branches

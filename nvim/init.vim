@@ -65,8 +65,10 @@ au FocusGained,BufEnter * :checktime  " see https://github.com/tmux-plugins/vim-
 nnoremap H gT
 nnoremap L gt
 
-" Map control-p to :FZF in normal mode
-nmap <C-p> :FZF<CR>
+" Pops up fuzzy search over all files in current directory
+nmap <C-p> :Files<CR>
+" Pops up fuzzy search over all open splits
+nmap <C-q> :Windows<CR>
 
 set number
 set relativenumber

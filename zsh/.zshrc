@@ -2,7 +2,6 @@
 
 # zplug plugin manager
 source $HOME/.zplug/init.zsh
-zplug "MichaelAquilina/zsh-auto-notify" # send notification after long commands 
 zplug "ael-code/zsh-colored-man-pages"
 zplug "eendroroy/zed-zsh" # Wrapper around z. Navigate to frequently-visited directories
 zplug "mfaerevaag/wd", as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }" # warp directory
@@ -101,7 +100,7 @@ fi
 # SCM breeze
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 # scmpuff = scm_breeze replacement
-eval "$(scmpuff init -s)"
+# eval "$(scmpuff init -s)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

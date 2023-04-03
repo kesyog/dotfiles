@@ -29,6 +29,7 @@ fi
 
 # Git aliases
 alias gs="git status"
+alias gdn="git diff --no-ext-diff"
 alias glcpy="git log --format=%B -1 | pbcopy; echo copied"
 alias glpst="git commit -m \"\$(pbpaste)\""
 alias glpsta="glpst --amend"

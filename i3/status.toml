@@ -1,22 +1,29 @@
+[theme]
 theme = "solarized-dark"
-icons = "awesome"
+[icons]
+icons = "awesome4"
 
 [[block]]
-block = "toggle"
-text = "4k"
-command_state = "ddcutil getvcp 60 | rg 0x12"
-command_on = "ddcutil setvcp 60 x12"
-command_off = "ddcutil setvcp 60 x11"
-interval = 60
+block = "weather"
+autolocate = true
+autolocate_interval = 3600
+[block.service]
+name = "metno"
+lang = "en"
 
 [[block]]
-block = "bluetooth"
-mac = "2C:41:A1:01:41:88"
+block = "custom"
+command = "timeout --kill-after 10s 5s /home/hikes/.cargo/bin/dtx"
+interval = 30
+hide_when_empty = true
 
 [[block]]
 block = "battery"
 interval = 10
-format = "{percentage}% {time}"
+format = "$icon $percentage $time"
+
+[[block]]
+block = "backlight"
 
 [[block]]
 block = "cpu"
@@ -27,14 +34,19 @@ block = "sound"
 
 [[block]]
 block = "net"
-device = "wlp59s0"
-ssid = true
-ip = true
-speed_up = false
-speed_down = false
-interval = 15
+device = "wlp82s0"
+format = "$icon $ssid $signal_strength $ip|$ipv6"
+interval = 5
 
 [[block]]
 block = "time"
 interval = 15
-format = "%a %Y-%m-%d %I:%M %p"
+timezone = "America/Los_Angeles"
+format = "$timestamp.datetime(f:'%I:%M %p') PT"
+
+[[block]]
+block = "time"
+interval = 15
+timezone = "America/New_York"
+#format = "%I:%M %p"
+format = "$timestamp.datetime(f:'%a %Y-%m-%d %I:%M %p')"

@@ -58,6 +58,9 @@ let g:ipy_truncate_input=1
 " More powerful backspace
 set backspace=indent,eol,start
 
+" Use ripgrep for :grep
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
 " Automatically refresh file if it changes externally
 au FocusGained,BufEnter * :checktime  " see https://github.com/tmux-plugins/vim-tmux-focus-events
 
@@ -246,7 +249,10 @@ nmap <leader><leader>f  <Plug>(coc-format)
 " Apply codeAction at the cursor
 nmap <leader>a <Plug>(coc-codeaction-cursor)
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction-selected)
+map <leader>ac  <Plug>(coc-codeaction-selected)
+nmap <leader>al  <Plug>(coc-codeaction-line)
+nmap <leader>af  <Plug>(coc-codeaction)
+nmap <leader>as  <Plug>(coc-codeaction-source)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Symbol renaming.

@@ -92,6 +92,9 @@ fbra() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
+# What's that file?
+wtf() { file $1 && stat $1 }
+
 # Local config, if present
 if [ -f $HOME/.zshrc_local ]; then
   source $HOME/.zshrc_local

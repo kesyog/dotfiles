@@ -36,3 +36,5 @@
 	defaultBranch = main
 [url "git@github.com:"]
   pushInsteadOf = "https://github.com/"
+[commit]
+	verbose = true

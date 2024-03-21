@@ -65,6 +65,9 @@ fi
 # cargo (rust package manager)
 PATH=$PATH:$HOME/.cargo/bin
 
+# go binaries
+PATH=$PATH:$HOME/go/bin
+
 # convenient spot to dump random binaries
 PATH=$PATH:$HOME/.local/bin
 

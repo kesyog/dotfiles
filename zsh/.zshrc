@@ -52,9 +52,21 @@ export TERMINAL='alacritty'
 [ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
 
 # ssh
-# export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
-eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
-export SSH_AUTH_SOCK
+fixup_ssh_auth_sock() {
+  if [[ -n ${SSH_AUTH_SOCK} && ! -e ${SSH_AUTH_SOCK} ]]
+  then
+    local new_sock=$(echo /tmp/ssh-*/agent.*(=UNom[1]))
+     if [[ -n ${new_sock} ]]
+     then
+       export SSH_AUTH_SOCK=${new_sock}
+     fi
+  fi
+}
+if [[ -n ${SSH_AUTH_SOCK} ]]
+then
+  autoload -U add-zsh-hook
+  add-zsh-hook preexec fixup_ssh_auth_sock
+fi
 
 # Gnome keyring daemon
 if [ -n "$DESKTOP_SESSION" ];then

@@ -116,7 +116,7 @@ if [ -f $HOME/.zshrc_local ]; then
 fi
 
 # SCM breeze
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && SCM_BREEZE_DISABLE_ASSETS_MANAGEMENT=true source "$HOME/.scm_breeze/scm_breeze.sh"
 # scmpuff = scm_breeze replacement
 # eval "$(scmpuff init -s)"
 

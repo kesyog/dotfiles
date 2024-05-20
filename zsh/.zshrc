@@ -117,8 +117,6 @@ fi
 
 # SCM breeze
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && SCM_BREEZE_DISABLE_ASSETS_MANAGEMENT=true source "$HOME/.scm_breeze/scm_breeze.sh"
-# scmpuff = scm_breeze replacement
-# eval "$(scmpuff init -s)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

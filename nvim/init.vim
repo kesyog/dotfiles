@@ -24,7 +24,6 @@ Plug 'HerringtonDarkholme/yats.vim' " Typescript support
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'cespare/vim-toml'
-Plug 'kmARC/vim-fubitive' " Bitbucket integration
 Plug 'tpope/vim-rhubarb' " GitHub integration
 Plug 'aklt/plantuml-syntax'
 Plug 'tpope/vim-commentary' " comment/uncomment using gc(c)
@@ -136,9 +135,6 @@ command! -bang -nargs=* Rgcpp call fzf#vim#grep('rg --column --line-number --no-
 
 " Automatically save the file notes when idle
 autocmd CursorHold .notes :write
-
-" Disable cscope loaded message on startup
-set nocscopeverbose
 
 " Add a shaded column at the 100-character mark
 set colorcolumn=100

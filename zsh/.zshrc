@@ -84,11 +84,12 @@ PATH=$PATH:$HOME/go/bin
 PATH=$PATH:$HOME/.local/bin
 
 # fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 # Faster fzf using fd-find
+PATH="$HOME/.fzf/bin:$PATH"
 export FZF_DEFAULT_COMMAND="fd -I ."
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -I -t d ."
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 
 # fzf git local branches
@@ -141,5 +142,3 @@ unset __conda_setup
 
 # starship prompt
 eval "$(starship init zsh)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

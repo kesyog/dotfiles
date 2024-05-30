@@ -60,6 +60,10 @@ set backspace=indent,eol,start
 " Use ripgrep for :grep
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
+" Disable mouse support. Mouse scrolling is nice, but tmux text selection is
+" too convenient.
+set mouse=r
+
 " Automatically refresh file if it changes externally
 au FocusGained,BufEnter * :checktime  " see https://github.com/tmux-plugins/vim-tmux-focus-events
 
@@ -99,8 +103,12 @@ set shiftwidth=2
 " Cscope
 nmap <F12> <Plug>CscopeDBInit
 
-" Map vim 'unnamed register' to system clipboard
+" Enable system clipboard integration
 set clipboard=unnamedplus
+"set clipboard+=unnamedplus
+" Workaround for neovim wl-clipboard and netrw interaction hang
+" (see: https://github.com/neovim/neovim/issues/6695 and
+" https://github.com/neovim/neovim/issues/9806)
 
 " Use jk as <Esc> key
 :inoremap jk <Esc>

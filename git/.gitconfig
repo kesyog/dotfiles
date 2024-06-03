@@ -38,3 +38,5 @@
   pushInsteadOf = "https://github.com/"
 [commit]
 	verbose = true
+[log]
+	follow = true

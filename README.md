@@ -60,12 +60,12 @@ conda activate <name>
 
 Unzipping for the lazy
 
-#### exa
+#### eza
 
 Improved `ls` and `tree`
 
 ```
-cargo install exa
+cargo install eza
 ```
 
 #### feh

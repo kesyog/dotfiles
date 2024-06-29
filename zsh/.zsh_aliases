@@ -16,15 +16,15 @@ if command -v bat > /dev/null 2>&1; then
 else
   echo bat not found
 fi
-# Alias ls to exa if installed
-if command -v exa > /dev/null 2>&1; then
-  alias ls='exa'
-  alias la='exa -a'
-  alias ll='exa -l'
+# Alias ls to eza if installed
+if command -v eza > /dev/null 2>&1; then
+  alias ls='eza'
+  alias la='eza -a'
+  alias ll='eza -l'
 else
   alias la='ls -a'
   alias ll='ls -l'
-  echo exa not found
+  echo eza not found
 fi
 
 # Git aliases

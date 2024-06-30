@@ -23,4 +23,10 @@ require('lazy').setup({
     colorscheme = { 'habamax' }
   },
   checker = { enabled = true },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    -- but disable the nag notification
+    notify = false,
+  },
 }) 

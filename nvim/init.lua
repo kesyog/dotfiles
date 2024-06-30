@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 vim.opt.foldmethod = 'indent'
 vim.opt.foldenable = false
+vim.g.loaded_ruby_provider = 0
 -- Tell vim-commentary plugin to comment using // for C and C++ files
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'c,cpp',

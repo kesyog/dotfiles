@@ -90,7 +90,7 @@ vim.api.nvim_set_keymap('n', 'L', 'gt', { noremap = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<C-i>', function()
+vim.keymap.set('n', '<localleader><C-p>', function()
   builtin.find_files({no_ignore = true, no_ignore_parent = true})
 end, {})
 vim.keymap.set('n', '<C-q>', builtin.buffers, {})

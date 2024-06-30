@@ -2,8 +2,8 @@ return {
   {
     'folke/tokyonight.nvim',
     lazy = true,
-  }, 
-  { 
+  },
+  {
     'bluz71/vim-moonfly-colors',
     name = 'moonfly',
     lazy = true,
@@ -18,6 +18,8 @@ return {
     priority = 1000,
     config = function()
         vim.cmd([[colorscheme vscode]])
+        -- Override inlay hints
+        vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#15aabf", ctermfg = 12 })
     end,
   },
   {
@@ -63,7 +65,7 @@ return {
               ['<esc>'] = actions.close
             },
           },
-          path_display = { 
+          path_display = {
             'truncate',
           },
           layout_config = { width = 0.95 },
@@ -73,11 +75,8 @@ return {
   },
   {
     'aznhe21/actions-preview.nvim',
-    config = function()
-      vim.keymap.set({ 'v', 'n' }, '<localleader>a', require('actions-preview').code_actions)
-    end,
   },
-  { 
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
@@ -85,24 +84,34 @@ return {
 
       configs.setup({
         ensure_installed = {
+          'bash',
           'c',
           'cmake',
           'cpp',
+          'diff',
+          'dockerfile',
+          'git_config',
+          'gitcommit',
+          'gitignore',
+          'go',
+          'java',
           'linkerscript',
           'lua',
+          'proto',
           'python',
           'rust',
           'starlark',
+          'swift',
           't32',
           'vimdoc',
         },
         sync_install = false,
         highlight = { enable = true },
-        indent = { enable = true },
+        indent = { enable = false },
       })
     end,
   },
-  { 
+  {
     'chrisgrieser/nvim-spider',
     config = function()
       vim.keymap.set({'n', 'o', 'x'}, '<localleader>w', "<cmd>lua require('spider').motion('w')<CR>", { desc = 'Spider-w' })
@@ -112,7 +121,7 @@ return {
   },
   {
     'hrsh7th/nvim-cmp',
-    dependencies = { 
+    dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer',
@@ -151,6 +160,9 @@ return {
           ['<Esc>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
+        formatting = {
+                format = require("nvim-highlight-colors").format
+        },
       }, {
           { name = 'buffer' },
       })
@@ -161,14 +173,73 @@ return {
       }
     end
   },
-  {'akinsho/bufferline.nvim', version = 'v4.6.1', dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      require('bufferline').setup{
-        options = {
-          mode = 'tabs',
-          buffer_close_icon = '',
-        }
+  {
+    'akinsho/bufferline.nvim', version = 'v4.6.1', dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      options = {
+        mode = 'tabs',
+        buffer_close_icon = '',
       }
-    end
-  }
+    }
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      on_attach = function(bufnr)
+        local gitsigns = require('gitsigns')
+
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- Navigation
+        map('n', ']c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({']c', bang = true})
+          else
+            gitsigns.nav_hunk('next')
+          end
+        end)
+
+        map('n', '[c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({'[c', bang = true})
+          else
+            gitsigns.nav_hunk('prev')
+          end
+        end)
+
+        -- Actions
+        map('n', '<leader>hs', gitsigns.stage_hunk)
+        map('n', '<leader>hr', gitsigns.reset_hunk)
+        map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+        map('v', '<leader>hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+        map('n', '<leader>hS', gitsigns.stage_buffer)
+        map('n', '<leader>hu', gitsigns.undo_stage_hunk)
+        map('n', '<leader>hR', gitsigns.reset_buffer)
+        map('n', '<leader>gb', gitsigns.blame)
+
+        -- Text object
+        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+      end
+    },
+  },
+  {'szw/vim-maximizer'},
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      highlight = {
+        after = ''
+      }
+    }
+  },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    opts = {
+      render = "background",
+    },
+  },
 }

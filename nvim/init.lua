@@ -88,6 +88,9 @@ vim.opt.timeoutlen = 750
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'H', 'gT', { noremap = true })
 vim.api.nvim_set_keymap('n', 'L', 'gt', { noremap = true })
+vim.keymap.set('n', '<localleader>z', ':MaximizerToggle<CR>', {silent = true, noremap = true})
+vim.keymap.set('v', '<localleader>z', ':MaximizerToggle<CR>gv', {silent = true, noremap = true})
+vim.keymap.set('i', '<localleader>z', '<C-o>:MaximizerToggle<CR>', {silent = true, noremap = true})
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
@@ -96,7 +99,40 @@ vim.keymap.set('n', '<localleader><C-p>', function()
 end, {})
 vim.keymap.set('n', '<C-q>', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fc', builtin.commands, {})
-vim.keymap.set('n', '<leader>ff', builtin.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<leader>ff', builtin.builtin, {})
+
+-- Map F5 key to trim trailing whitespace
+vim.keymap.set('n', '<F5>', function()
+  vim.cmd('%s/\\s\\+$//e')
+  vim.cmd('nohl')
+  end,
+  { noremap = true }
+)
+
+-- LSP config
+vim.lsp.inlay_hint.enable()
+vim.keymap.set('n', '<C-\\>g', builtin.lsp_definitions)
+vim.keymap.set('n', '<C-\\><C-\\>g', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', {})
+vim.keymap.set('n', '<C-]>g', function()
+  vim.cmd('split')
+  vim.lsp.buf.definition()
+end, {})
+vim.keymap.set('n', '<C-]><C-]>g', function()
+  vim.cmd('vsplit')
+  vim.lsp.buf.definition()
+end, {})
+vim.keymap.set('n', '<C-\\>s', builtin.lsp_references)
+-- Toggle inlay hints
+vim.keymap.set('n', '<F6>', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+vim.keymap.set('x', '<localleader>f', vim.lsp.buf.format)
+vim.keymap.set('n', '<localleader><localleader>f', vim.lsp.buf.format)
+vim.keymap.set('n', '<localleader>rn', vim.lsp.buf.rename)
+vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float)
+vim.keymap.set({ 'v', 'n' }, '<localleader>a', require('actions-preview').code_actions)
+
+-- User commands
 vim.api.nvim_create_user_command('Fd', builtin.find_files, {})
 vim.api.nvim_create_user_command('Rg', function(opts)
     if opts.args == '' then
@@ -140,35 +176,6 @@ vim.api.nvim_create_user_command('Rgh', function(opts)
   end,
 { nargs = '?' })
 
--- Map F5 key to trim trailing whitespace
-vim.keymap.set('n', '<F5>', function()
-  vim.cmd('%s/\\s\\+$//e')
-  vim.cmd('nohl')
-  end,
-  { noremap = true }
-)
-
--- LSP config
-vim.lsp.inlay_hint.enable()
-vim.keymap.set('n', '<C-\\>g', builtin.lsp_definitions)
-vim.keymap.set('n', '<C-\\><C-\\>g', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', {})
-vim.keymap.set('n', '<C-]>g', function()
-  vim.cmd('split')
-  vim.lsp.buf.definition()
-end, {})
-vim.keymap.set('n', '<C-]><C-]>g', function()
-  vim.cmd('vsplit')
-  vim.lsp.buf.definition()
-end, {})
-vim.keymap.set('n', '<C-\\>s', builtin.lsp_references)
--- Toggle inlay hints
-vim.keymap.set('n', '<F6>', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
-vim.keymap.set('x', '<localleader>f', vim.lsp.buf.format)
-vim.keymap.set('n', '<localleader><localleader>f', vim.lsp.buf.format)
-vim.keymap.set('n', '<localleader>rn', vim.lsp.buf.rename)
-vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float)
 
 -- Misc autocommands
 -- Trim trailing whitespace on save

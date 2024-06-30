@@ -191,4 +191,15 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
-vim.cmd('source $HOME/init_local.vim')
+local function safe_require(module)
+  local ok, result = pcall(require, module)
+  if not ok then
+    if not string.match(result, "module '" .. module .. "' not found") then
+      print('Error loading module:' .. module .. '\nError: ' .. result)
+    end
+  end
+  --return ok
+end
+
+-- Load machine-specific config, if it exists
+safe_require('local')

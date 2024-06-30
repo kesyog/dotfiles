@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 
 # zplug plugin manager
-source $HOME/.zplug/init.zsh
+if command -v brew > /dev/null 2>&1; then
+  export ZPLUG_HOME=/opt/homebrew/opt/zplug
+else
+  export ZPLUG_HOME=$HOME/.zplug
+fi
+source $ZPLUG_HOME/init.zsh
 zplug "ael-code/zsh-colored-man-pages"
 zplug "eendroroy/zed-zsh" # Wrapper around z. Navigate to frequently-visited directories
 zplug "mfaerevaag/wd", as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }" # warp directory
@@ -17,6 +22,18 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+# Load homebrew autocompletions
+if command -v brew > /dev/null 2>&1; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  if type brew &>/dev/null
+  then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+    autoload -Uz compinit
+    compinit
+  fi
+fi
 
 # Don't send a "long command" notification for these commands
 AUTO_NOTIFY_IGNORE+=("docker" "apt" "git diff" "git log") 

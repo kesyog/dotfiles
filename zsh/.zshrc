@@ -56,43 +56,43 @@ setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='nvim'
-# else
-#   export EDITOR='mvim'
-# fi
-export EDITOR='nvim'
-export TERMINAL='alacritty'
+if command -v nvim > /dev/null 2>&1; then
+  export EDITOR='nvim'
+fi
+if command -v alacritty > /dev/null 2>&1; then
+  export TERMINAL='alacritty'
+fi
 
 # Personal aliases
 [ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
 
 # ssh
-fixup_ssh_auth_sock() {
-  if [[ -n ${SSH_AUTH_SOCK} && ! -e ${SSH_AUTH_SOCK} ]]
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  fixup_ssh_auth_sock() {
+    if [[ -n ${SSH_AUTH_SOCK} && ! -e ${SSH_AUTH_SOCK} ]]
+    then
+      local new_sock=$(echo /tmp/ssh-*/agent.*(=UNom[1]))
+       if [[ -n ${new_sock} ]]
+       then
+         export SSH_AUTH_SOCK=${new_sock}
+       fi
+    fi
+  }
+  if [[ -n ${SSH_AUTH_SOCK} ]]
   then
-    local new_sock=$(echo /tmp/ssh-*/agent.*(=UNom[1]))
-     if [[ -n ${new_sock} ]]
-     then
-       export SSH_AUTH_SOCK=${new_sock}
-     fi
+    autoload -U add-zsh-hook
+    add-zsh-hook preexec fixup_ssh_auth_sock
   fi
-}
-if [[ -n ${SSH_AUTH_SOCK} ]]
-then
-  autoload -U add-zsh-hook
-  add-zsh-hook preexec fixup_ssh_auth_sock
-fi
 
-# Gnome keyring daemon
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
+  # Gnome keyring daemon
+  if [ -n "$DESKTOP_SESSION" ];then
+      eval $(gnome-keyring-daemon --start)
+      export SSH_AUTH_SOCK
+  fi
 fi
 
 # cargo (rust package manager)
-PATH=$PATH:$HOME/.cargo/bin
+[ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 
 # go binaries
 PATH=$PATH:$HOME/go/bin
@@ -102,12 +102,17 @@ PATH=$PATH:$HOME/.local/bin
 
 # fzf
 # Faster fzf using fd-find
-PATH="$HOME/.fzf/bin:$PATH"
+if ! command -v brew > /dev/null 2>&1; then
+  PATH="$HOME/.fzf/bin:$PATH"
+fi
 export FZF_DEFAULT_COMMAND="fd -I ."
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -I -t d ."
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-
+if command -v fzf > /dev/null 2>&1; then
+  source <(fzf --zsh)
+else
+  echo fzf not installed
+fi
 
 # fzf git local branches
 fbr() {
@@ -128,11 +133,6 @@ fbra() {
 # What's that file?
 wtf() { file $1 && stat $1 }
 
-# Local config, if present
-if [ -f $HOME/.zshrc_local ]; then
-  source $HOME/.zshrc_local
-fi
-
 # SCM breeze
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && SCM_BREEZE_DISABLE_ASSETS_MANAGEMENT=true source "$HOME/.scm_breeze/scm_breeze.sh"
 
@@ -140,22 +140,20 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # direnv
-eval "$(direnv hook zsh)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+if command -v direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
 else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
+  echo direnv not installed
 fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 # starship prompt
-eval "$(starship init zsh)"
+if command -v direnv > /dev/null 2>&1; then
+  eval "$(starship init zsh)"
+else
+  echo starship not installed
+fi
+
+# Local config, if present
+if [ -f $HOME/.zshrc_local ]; then
+  source $HOME/.zshrc_local
+fi

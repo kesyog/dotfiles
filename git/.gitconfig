@@ -40,3 +40,5 @@
 	verbose = true
 [log]
 	follow = true
+[color]
+	ui = auto

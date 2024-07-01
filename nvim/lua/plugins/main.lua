@@ -9,8 +9,8 @@ return {
     lazy = true,
   },
   {
-    "EdenEast/nightfox.nvim",
-    --dev = true,
+    "kesyog/nightfox.nvim",
+    -- dev = true,
     lazy = false,
     priority = 1000,
     config = function()

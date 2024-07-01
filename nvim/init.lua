@@ -1,6 +1,7 @@
 require('config.lazy')
 
 -- Options
+vim.o.background = "dark"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.smartindent = true
@@ -88,6 +89,7 @@ vim.opt.timeoutlen = 750
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'H', 'gT', { noremap = true })
 vim.api.nvim_set_keymap('n', 'L', 'gt', { noremap = true })
+vim.keymap.set('n', '<localleader>i', ':Inspect<CR>', {silent = true, noremap = true})
 vim.keymap.set('n', '<localleader>z', ':MaximizerToggle<CR>', {silent = true, noremap = true})
 vim.keymap.set('v', '<localleader>z', ':MaximizerToggle<CR>gv', {silent = true, noremap = true})
 vim.keymap.set('i', '<localleader>z', '<C-o>:MaximizerToggle<CR>', {silent = true, noremap = true})
@@ -198,6 +200,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     })
   end,
 })
+
+require('highlight')
 
 local function safe_require(module)
   local ok, result = pcall(require, module)

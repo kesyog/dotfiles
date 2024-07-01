@@ -29,4 +29,7 @@ require('lazy').setup({
     -- but disable the nag notification
     notify = false,
   },
+  dev = {
+    path = '~/dev/repos',
+  },
 }) 

@@ -9,17 +9,40 @@ return {
     lazy = true,
   },
   {
+    "EdenEast/nightfox.nvim",
+    --dev = true,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('nightfox').setup({
+        options = {
+          styles = {
+            keywords = 'italic',
+            comments = 'italic',
+          },
+        }
+      })
+      vim.cmd([[colorscheme nightfox]])
+    end,
+  },
+  {
       'askfiy/visual_studio_code',
       lazy = true,
   },
   {
     'Mofiqul/vscode.nvim',
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     config = function()
-        vim.cmd([[colorscheme vscode]])
-        -- Override inlay hints
-        vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#15aabf", ctermfg = 12 })
+      local c = require('vscode.colors').get_colors()
+      require('vscode').setup({
+        italic_comments = true,
+        group_overrides = {
+          ["@lsp.type.macro"] = { link = "PreProc" },
+          ["@lsp.type.builtin.rust"] = { link = "@type.builtin" },
+        },
+      })
+      vim.cmd([[colorscheme vscode]])
+      vim.cmd('hi @keyword gui=italic')
     end,
   },
   {

@@ -1,14 +1,5 @@
 return {
   {
-    'folke/tokyonight.nvim',
-    lazy = true,
-  },
-  {
-    'bluz71/vim-moonfly-colors',
-    name = 'moonfly',
-    lazy = true,
-  },
-  {
     "kesyog/nightfox.nvim",
     -- dev = true,
     lazy = false,
@@ -26,31 +17,7 @@ return {
     end,
   },
   {
-      'askfiy/visual_studio_code',
-      lazy = true,
-  },
-  {
-    'Mofiqul/vscode.nvim',
-    lazy = true,
-    config = function()
-      local c = require('vscode.colors').get_colors()
-      require('vscode').setup({
-        italic_comments = true,
-        group_overrides = {
-          ["@lsp.type.macro"] = { link = "PreProc" },
-          ["@lsp.type.builtin.rust"] = { link = "@type.builtin" },
-        },
-      })
-      vim.cmd([[colorscheme vscode]])
-      vim.cmd('hi @keyword gui=italic')
-    end,
-  },
-  {
     'rebelot/kanagawa.nvim',
-    lazy = true,
-  },
-  {
-    'jpo/vim-railscasts-theme',
     lazy = true,
   },
   {

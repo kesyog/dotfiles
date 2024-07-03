@@ -105,9 +105,9 @@ PATH=$PATH:$HOME/.local/bin
 if ! command -v brew > /dev/null 2>&1; then
   PATH="$HOME/.fzf/bin:$PATH"
 fi
-export FZF_DEFAULT_COMMAND="fd -I ."
+export FZF_DEFAULT_COMMAND="fd --no-ignore-vcs ."
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd -I -t d ."
+export FZF_ALT_C_COMMAND="fd --no-ignore-vcs -t d ."
 if command -v fzf > /dev/null 2>&1; then
   source <(fzf --zsh)
 else

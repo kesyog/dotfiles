@@ -94,14 +94,19 @@ vim.keymap.set('n', '<localleader>z', ':MaximizerToggle<CR>', {silent = true, no
 vim.keymap.set('v', '<localleader>z', ':MaximizerToggle<CR>gv', {silent = true, noremap = true})
 vim.keymap.set('i', '<localleader>z', '<C-o>:MaximizerToggle<CR>', {silent = true, noremap = true})
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+local fzf = require('fzf-lua')
+local fzf_actions = require('fzf-lua.actions')
+vim.keymap.set('n', '<F1>', fzf.help_tags, {})
+vim.keymap.set('n', '<C-p>', function() fzf.files({ fd_opts = '--no-hidden' }) end, {})
 vim.keymap.set('n', '<localleader><C-p>', function()
-  builtin.find_files({no_ignore = true, no_ignore_parent = true})
+  fzf.files({ fd_opts = '--no-ignore-vcs' })
 end, {})
-vim.keymap.set('n', '<C-q>', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fc', builtin.commands, {})
-vim.keymap.set('n', '<leader>ff', builtin.builtin, {})
+vim.keymap.set('n', '<C-q>', fzf.buffers, {})
+vim.keymap.set('n', '<leader>fc', fzf.commands, {})
+vim.keymap.set('n', '<leader>ff', fzf.builtin, {})
+vim.keymap.set({ 'v', 'n' }, '<localleader>qf', fzf.lsp_code_actions, {})
+vim.keymap.set({ 'v', 'n' }, '<localleader>a', fzf.lsp_code_actions, {})
+vim.keymap.set('n', '<leader>fd', fzf.diagnostics_document, {})
 
 -- Map F5 key to trim trailing whitespace
 vim.keymap.set('n', '<F5>', function()
@@ -113,17 +118,6 @@ vim.keymap.set('n', '<F5>', function()
 
 -- LSP config
 vim.lsp.inlay_hint.enable()
-vim.keymap.set('n', '<C-\\>g', builtin.lsp_definitions)
-vim.keymap.set('n', '<C-\\><C-\\>g', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', {})
-vim.keymap.set('n', '<C-]>g', function()
-  vim.cmd('split')
-  vim.lsp.buf.definition()
-end, {})
-vim.keymap.set('n', '<C-]><C-]>g', function()
-  vim.cmd('vsplit')
-  vim.lsp.buf.definition()
-end, {})
-vim.keymap.set('n', '<C-\\>s', builtin.lsp_references)
 -- Toggle inlay hints
 vim.keymap.set('n', '<F6>', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
 vim.keymap.set('x', '<localleader>f', vim.lsp.buf.format)
@@ -132,51 +126,69 @@ vim.keymap.set('n', '<localleader>rn', vim.lsp.buf.rename)
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float)
-vim.keymap.set({ 'v', 'n' }, '<localleader>a', require('actions-preview').code_actions)
 
 -- User commands
-vim.api.nvim_create_user_command('Fd', builtin.find_files, {})
 vim.api.nvim_create_user_command('Rg', function(opts)
     if opts.args == '' then
-      builtin.live_grep()
+      fzf.live_grep({ rg_opts = '--ignore-case'})
     else
-      builtin.grep_string({ search = opts.fargs[1] })
+      fzf.grep({ search = opts.fargs[1] })
     end
   end,
 { nargs = '?' })
 vim.api.nvim_create_user_command('Rgc', function(opts)
     if opts.args == '' then
-      builtin.live_grep({type_filter = 'c'})
+      fzf.live_grep({ rg_opts = '--type c --ignore-case'})
     else
-      builtin.grep_string({
+      fzf.grep({
         search = opts.fargs[1],
-        additional_args = {'--type', 'c', '--ignore-case'},
+        rg_opts = '--type c --ignore-case',
       })
     end
   end,
 { nargs = '?' })
 vim.api.nvim_create_user_command('Rgcpp', function(opts)
     if opts.args == '' then
-      builtin.live_grep({type_filter = 'cpp'})
+      fzf.live_grep({ rg_opts = '--type cpp --ignore-case'})
     else
-      builtin.grep_string({
+      fzf.grep({
         search = opts.fargs[1],
-        additional_args = {'--type', 'cpp', '--ignore-case'},
+        rg_opts = '--type cpp --ignore-case',
       })
     end
   end,
 { nargs = '?' })
 vim.api.nvim_create_user_command('Rgh', function(opts)
     if opts.args == '' then
-      builtin.live_grep({type_filter = 'h'})
+      fzf.live_grep({ rg_opts = '--type h --ignore-case'})
     else
-      builtin.grep_string({
+      fzf.grep({
         search = opts.fargs[1],
-        additional_args = {'--type', 'h', '--ignore-case'},
+        rg_opts = '--type h --ignore-case',
       })
     end
   end,
 { nargs = '?' })
+
+vim.keymap.set('n', '<C-\\>g',
+  function()
+    fzf.lsp_definitions({ jump_to_single_result = true })
+  end, {})
+vim.keymap.set('n', '<C-\\><C-\\>g',
+  function()
+    fzf.lsp_definitions({
+      jump_to_single_result = true,
+      jump_to_single_result_action = fzf_actions.file_tabedit,
+    })
+  end, {})
+vim.keymap.set('n', '<C-]>g',
+  function()
+    fzf.lsp_definitions({
+    jump_to_single_result = true,
+    jump_to_single_result_action = fzf_actions.file_split,
+    })
+  end, {})
+vim.keymap.set('n', '<C-\\>s', fzf.lsp_references, {})
 
 
 -- Misc autocommands

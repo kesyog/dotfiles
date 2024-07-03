@@ -44,27 +44,35 @@ return {
     end,
   },
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    'ibhagwan/fzf-lua',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local actions = require('telescope.actions')
-      require('telescope').setup{
-        defaults = {
-          mappings = {
-            i = {
-              ['<esc>'] = actions.close
-            },
+      local actions = require "fzf-lua.actions"
+      require('fzf-lua').setup{
+        winopts = {
+          preview = {
+            horizontal = "right:50%",
           },
-          path_display = {
-            'truncate',
+        },
+        actions = {
+          files = {
+            ["default"]     = actions.file_edit_or_qf,
+            ["ctrl-x"]      = actions.file_split,
+            ["ctrl-v"]      = actions.file_vsplit,
+            ["ctrl-t"]      = actions.file_tabedit,
+            ["alt-q"]       = actions.file_sel_to_qf,
+            ["alt-l"]       = actions.file_sel_to_ll,
+
           },
-          layout_config = { width = 0.95 },
-        }
+          buffers = {
+            ["default"]     = actions.buf_edit,
+            ["ctrl-x"]      = actions.buf_split,
+            ["ctrl-v"]      = actions.buf_vsplit,
+            ["ctrl-t"]      = actions.buf_tabedit,
+          },
+        },
       }
     end,
-  },
-  {
-    'aznhe21/actions-preview.nvim',
   },
   {
     'nvim-treesitter/nvim-treesitter',

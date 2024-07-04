@@ -1,17 +1,44 @@
 return {
   {
-    "kesyog/nightfox.nvim",
+    "EdenEast/nightfox.nvim",
     -- dev = true,
     lazy = false,
     priority = 1000,
     config = function()
+      local palette = require('nightfox.palette').load()
       require('nightfox').setup({
         options = {
           styles = {
             keywords = 'italic',
             comments = 'italic',
           },
-        }
+        },
+        specs = {
+          carbonfox = {
+            builtin4 = palette.carbonfox.blue.dim
+          },
+          nightfox = {
+            builtin4 = palette.nightfox.blue.dim
+          },
+          dayfox = {
+            builtin4 = palette.dayfox.blue.dim
+          },
+          duskfox = {
+            builtin4 = palette.duskfox.blue.dim
+          },
+          terafox = {
+            builtin4 = palette.terafox.blue.dim
+          },
+          nordfox = {
+            builtin4 = palette.nordfox.blue.dim
+          },
+        },
+        groups = {
+          nightfox = {
+            ["@function.builtin"] = { fg = "builtin4" },
+            ["@lsp.typemod.macro.defaultLibrary"] = { link = "PreProc" },
+          },
+        },
       })
       vim.cmd([[colorscheme nightfox]])
     end,

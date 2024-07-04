@@ -26,7 +26,8 @@ git clone https://github.com/scmbreeze/scm_breeze.git $HOME/.scm_breeze
 $HOME/.scm_breeze/install.sh
 
 cargo install \
-  termlight
+  termlight \
+  tree-sitter-cli \
 
 if [ "$(uname)" == "Darwin" ]; then
     # Mac OS X

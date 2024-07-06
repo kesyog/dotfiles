@@ -1,0 +1,4 @@
+.git
+*.py[cod]
+__pycache__
+node_modules

@@ -4,6 +4,7 @@
 # ./stowsh/stowsh alacritty -t ~/.config/alacritty
 # ./stowsh/stowsh gdb -t ~
 # ./stowsh/stowsh git -t ~
+# ./stowsh/stowsh fd -t ~
 # ./stowsh/stowsh i3 -t ~/.config/i3
 # ./stowsh/stowsh nvim -t ~/.config/nvim
 # ./stowsh/stowsh nvim/lua -t ~/.config/nvim/lua

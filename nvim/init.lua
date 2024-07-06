@@ -1,4 +1,5 @@
 require('config.lazy')
+require('plugin_setup')
 
 -- Options
 vim.o.background = "dark"

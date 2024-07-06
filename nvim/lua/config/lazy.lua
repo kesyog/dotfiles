@@ -22,7 +22,11 @@ require('lazy').setup({
     missing = true,
     colorscheme = { 'habamax' }
   },
-  checker = { enabled = true },
+  checker = { 
+    enabled = true,
+    -- Reduce frequency to once per day to reduce nagging
+    frequency = 86400
+  },
   change_detection = {
     -- automatically check for config file changes and reload the ui
     enabled = true,

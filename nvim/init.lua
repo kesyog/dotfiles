@@ -193,6 +193,13 @@ vim.keymap.set('n', '<C-]>g',
     jump_to_single_result_action = fzf_actions.file_split,
     })
   end, {})
+vim.keymap.set('n', '<C-]><C-]>g',
+  function()
+    fzf.lsp_definitions({
+    jump_to_single_result = true,
+    jump_to_single_result_action = fzf_actions.file_vsplit,
+    })
+  end, {})
 vim.keymap.set('n', '<C-\\>s', fzf.lsp_references, {})
 
 

@@ -108,6 +108,10 @@ vim.keymap.set('n', '<leader>ff', fzf.builtin, {})
 vim.keymap.set({ 'v', 'n' }, '<localleader>qf', fzf.lsp_code_actions, {})
 vim.keymap.set({ 'v', 'n' }, '<localleader>a', fzf.lsp_code_actions, {})
 vim.keymap.set('n', '<leader>fd', fzf.diagnostics_document, {})
+vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end,
+  { desc = "Next todo comment" })
+vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end,
+  { desc = "Previous todo comment" })
 
 -- Map F5 key to trim trailing whitespace
 vim.keymap.set('n', '<F5>', function()

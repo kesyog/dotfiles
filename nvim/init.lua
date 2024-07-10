@@ -120,6 +120,8 @@ vim.keymap.set('n', '<F5>', function()
   end,
   { noremap = true }
 )
+vim.keymap.set('n', '<F4>', function() require("nvim-highlight-colors").toggle() end,
+  { desc = "Toggle color highlighting" })
 
 -- LSP config
 vim.lsp.inlay_hint.enable()
@@ -232,6 +234,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
+require("nvim-highlight-colors").turnOff()
 require('highlight')
 
 local function safe_require(module)

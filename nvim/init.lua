@@ -133,9 +133,10 @@ vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float)
 
 -- User commands
+local rg_default_args = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e'
 vim.api.nvim_create_user_command('Rg', function(opts)
     if opts.args == '' then
-      fzf.live_grep({ rg_opts = '--ignore-case'})
+      fzf.live_grep()
     else
       fzf.grep({ search = opts.fargs[1] })
     end
@@ -143,33 +144,39 @@ vim.api.nvim_create_user_command('Rg', function(opts)
 { nargs = '?' })
 vim.api.nvim_create_user_command('Rgc', function(opts)
     if opts.args == '' then
-      fzf.live_grep({ rg_opts = '--type c --ignore-case'})
+      fzf.live_grep({
+        rg_opts = '--type c ' .. rg_default_args,
+      })
     else
       fzf.grep({
         search = opts.fargs[1],
-        rg_opts = '--type c --ignore-case',
+        rg_opts = '--type c ' .. rg_default_args,
       })
     end
   end,
 { nargs = '?' })
 vim.api.nvim_create_user_command('Rgcpp', function(opts)
     if opts.args == '' then
-      fzf.live_grep({ rg_opts = '--type cpp --ignore-case'})
+      fzf.live_grep({
+        rg_opts = '--type cpp ' .. rg_default_args,
+      })
     else
       fzf.grep({
         search = opts.fargs[1],
-        rg_opts = '--type cpp --ignore-case',
+        rg_opts = '--type cpp ' .. rg_default_args,
       })
     end
   end,
 { nargs = '?' })
 vim.api.nvim_create_user_command('Rgh', function(opts)
     if opts.args == '' then
-      fzf.live_grep({ rg_opts = '--type h --ignore-case'})
+      fzf.live_grep({
+        rg_opts = '--type h ' .. rg_default_args,
+      })
     else
       fzf.grep({
         search = opts.fargs[1],
-        rg_opts = '--type h --ignore-case',
+        rg_opts = '--type h ' .. rg_default_args,
       })
     end
   end,

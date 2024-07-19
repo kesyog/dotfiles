@@ -1,7 +1,6 @@
 return {
   {
     "EdenEast/nightfox.nvim",
-    -- dev = true,
     lazy = false,
     priority = 1000,
     config = function()
@@ -126,10 +125,11 @@ return {
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-emoji',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-document-symbol',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-path',
     },
     config = function()
@@ -170,6 +170,16 @@ return {
       }, {
           { name = 'buffer' },
       })
+      -- Completion for / an ? search
+      cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          -- Press /@ to show doc items from LSP
+          { name = 'nvim_lsp_document_symbol' },
+        }, {
+          { name = 'buffer' },
+        })
+      })
     end
   },
   {
@@ -181,57 +191,21 @@ return {
       }
     }
   },
-  {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      on_attach = function(bufnr)
-        local gitsigns = require('gitsigns')
-
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
-
-        -- Navigation
-        map('n', ']c', function()
-          if vim.wo.diff then
-            vim.cmd.normal({']c', bang = true})
-          else
-            gitsigns.nav_hunk('next')
-          end
-        end)
-
-        map('n', '[c', function()
-          if vim.wo.diff then
-            vim.cmd.normal({'[c', bang = true})
-          else
-            gitsigns.nav_hunk('prev')
-          end
-        end)
-
-        -- Actions
-        map('n', '<leader>hs', gitsigns.stage_hunk)
-        map('n', '<leader>hr', gitsigns.reset_hunk)
-        map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-        map('v', '<leader>hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-        map('n', '<leader>hS', gitsigns.stage_buffer)
-        map('n', '<leader>hu', gitsigns.undo_stage_hunk)
-        map('n', '<leader>hR', gitsigns.reset_buffer)
-        map('n', '<leader>gb', gitsigns.blame)
-
-        -- Text object
-        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-      end
-    },
-  },
+  -- Git stuff
+  {'tpope/vim-fugitive'},
   {'szw/vim-maximizer'},
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       highlight = {
-        after = ''
+        after = '',
+        pattern = {
+          [[.*<(KEYWORDS)\s*:]],
+        },
+      },
+      search = {
+        pattern = [[\b(KEYWORDS)(\w+)?:]],
       }
     }
   },

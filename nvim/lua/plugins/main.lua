@@ -126,6 +126,7 @@ return {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-emoji',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
@@ -180,6 +181,17 @@ return {
           { name = 'buffer' },
         })
       })
+
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        { name = 'cmdline' }
+      }),
+      matching = { disallow_symbol_nonprefix_matching = false }
+    })
+
     end
   },
   {

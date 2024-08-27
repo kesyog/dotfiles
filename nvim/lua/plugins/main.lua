@@ -98,7 +98,6 @@ return {
           'go',
           'java',
           'jsonc', -- needed for neoconf.nvim
-          'linkerscript',
           'lua',
           'proto',
           'python',

@@ -4,13 +4,12 @@
 local function lspconfig_setup()
   local cmd
   local root_dir = nil
-  --- TODO: do better
+  --- TODO: do better via project-specific configs
   if os.getenv('PW_PROJECT_ROOT') == nil then
     cmd = {'clangd', '--clang-tidy'}
   else
     cmd = {'clangd',
     '--compile-commands-dir=' .. os.getenv('PW_PROJECT_ROOT') .. '/.pw_ide/.stable',
-    --'--query-driver=' .. os.getenv('PW_WAC_CIPD_INSTALL_DIR') .. '/bin/*,' .. os.getenv('PW_PIGWEED_CIPD_INSTALL_DIR') .. '/bin/*',
     '--background-index',
     '--clang-tidy',
     }

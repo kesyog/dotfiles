@@ -33,6 +33,10 @@ return {
           },
         },
         groups = {
+          dayfox = {
+            ["@function.builtin"] = { fg = "builtin4" },
+            ["@lsp.typemod.macro.defaultLibrary"] = { link = "PreProc" },
+          },
           nightfox = {
             ["@function.builtin"] = { fg = "builtin4" },
             ["@lsp.typemod.macro.defaultLibrary"] = { link = "PreProc" },

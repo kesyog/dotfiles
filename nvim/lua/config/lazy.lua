@@ -24,8 +24,8 @@ require('lazy').setup({
   },
   checker = { 
     enabled = true,
-    -- Reduce frequency to once per day to reduce nagging
-    frequency = 86400
+    -- Reduce frequency to once per week to reduce nagging
+    frequency = 604800
   },
   change_detection = {
     -- automatically check for config file changes and reload the ui

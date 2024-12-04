@@ -55,6 +55,10 @@ fi
 
 alias fdfind=$HOME/.cargo/bin/fd
 
+diss() {
+  llvm-objdump --source --start-address=$1 --stop-address=$2 $3
+}
+
 # use `sudo -E` instead of `sudo` with vim/nvim so that the local vimconfig is used
 sudo() {
     if [[ $1 == "vim" ]] || [[ $1 == "nvim" ]]; then

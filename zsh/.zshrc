@@ -11,6 +11,7 @@ zplug "ael-code/zsh-colored-man-pages"
 zplug "eendroroy/zed-zsh" # Wrapper around z. Navigate to frequently-visited directories
 zplug "mfaerevaag/wd", as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }" # warp directory
 zplug "mdumitru/git-aliases" # Shortened git aliases
+zplug "softmoth/zsh-vim-mode"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

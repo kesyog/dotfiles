@@ -230,4 +230,11 @@ return {
       render = "background",
     },
   },
+  {
+      "rachartier/tiny-glimmer.nvim",
+      event = "TextYankPost",
+      opts = {
+          default_animation = 'pulse'
+      },
+  },
 }

@@ -186,27 +186,27 @@ vim.api.nvim_create_user_command('Rgh', function(opts)
 
 vim.keymap.set('n', '<C-\\>g',
   function()
-    fzf.lsp_definitions({ jump_to_single_result = true })
+    fzf.lsp_definitions({ jump1 = true })
   end, {})
 vim.keymap.set('n', '<C-\\><C-\\>g',
   function()
     fzf.lsp_definitions({
-      jump_to_single_result = true,
-      jump_to_single_result_action = fzf_actions.file_tabedit,
+      jump1 = true,
+      jump1_action = fzf_actions.file_tabedit,
     })
   end, {})
 vim.keymap.set('n', '<C-]>g',
   function()
     fzf.lsp_definitions({
-    jump_to_single_result = true,
-    jump_to_single_result_action = fzf_actions.file_split,
+    jump1 = true,
+    jump1_action = fzf_actions.file_split,
     })
   end, {})
 vim.keymap.set('n', '<C-]><C-]>g',
   function()
     fzf.lsp_definitions({
-    jump_to_single_result = true,
-    jump_to_single_result_action = fzf_actions.file_vsplit,
+    jump1 = true,
+    jump1_action = fzf_actions.file_vsplit,
     })
   end, {})
 vim.keymap.set('n', '<C-\\>s', fzf.lsp_references, {})

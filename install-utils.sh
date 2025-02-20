@@ -12,7 +12,7 @@ brew install \
   direnv \
   dtrx \
   dust \
-  ezn \
+  eza \
   fd \
   fzf \
   hyperfine \

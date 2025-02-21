@@ -215,7 +215,7 @@ vim.keymap.set('n', '<C-\\>s', fzf.lsp_references, {})
 -- Misc autocommands
 -- Trim trailing whitespace on save
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = 'c,cpp,rust,md,py,ld,cmake',
+  pattern = 'c,cpp,rust,markdown,python,ld,cmake,lua',
   callback = function()
     vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
       buffer = 0,

@@ -8,7 +8,6 @@ else
 fi
 source $ZPLUG_HOME/init.zsh
 zplug "ael-code/zsh-colored-man-pages"
-zplug "eendroroy/zed-zsh" # Wrapper around z. Navigate to frequently-visited directories
 zplug "mfaerevaag/wd", as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }" # warp directory
 zplug "mdumitru/git-aliases" # Shortened git aliases
 zplug "softmoth/zsh-vim-mode"
@@ -145,6 +144,13 @@ if command -v direnv > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 else
   echo direnv not installed
+fi
+
+# zoxide
+if command -v zoxide > /dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+else
+  echo zoxide not installed
 fi
 
 # starship prompt

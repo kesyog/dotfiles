@@ -20,6 +20,7 @@ brew install \
   ripgrep \
   tokei \
   starship \
+  zoxide \
   zplug \
 
 git clone https://github.com/scmbreeze/scm_breeze.git $HOME/.scm_breeze

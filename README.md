@@ -37,6 +37,7 @@ Run `./install-utils.sh` to set up a new machine with most of these.
 * starship: Fancy command line prompt
 * tmux: Terminal multiplexer. Less useful on Mac with iterm2.
 * VS Code: For when vim sucks
+* zoxide: smarter cd
 * zsh + zplug
 
 ## TODO

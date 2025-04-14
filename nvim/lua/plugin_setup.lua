@@ -23,6 +23,9 @@ local function lspconfig_setup()
   require('lspconfig').rust_analyzer.setup {
     capabilities = require('cmp_nvim_lsp').default_capabilities()
   }
+  require("lspconfig").starpls.setup {
+    capabilities = require('cmp_nvim_lsp').default_capabilities()
+  }
 
   --- Workaround for Rust Analyzer cancelling requests
   --- https://github.com/neovim/neovim/issues/30985#issuecomment-2447329525

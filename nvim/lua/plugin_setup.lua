@@ -13,19 +13,24 @@ local function lspconfig_setup()
     '--background-index',
     '--clang-tidy',
     }
-    root_dir = function(filename, buf) return vim.fs.root(filename, {'.repo'}) end
+    root_dir = function(bufnr, on_dir)
+      dir = vim.fs.root(bufnr, {'.repo'})
+      if (dir ~= nil) then
+        on_dir(dir)
+      end
+    end
   end
-  require('lspconfig').clangd.setup{
+  vim.lsp.config('clangd', {
     cmd = cmd,
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
     root_dir = root_dir,
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  }
-  require('lspconfig').rust_analyzer.setup {
-    capabilities = require('cmp_nvim_lsp').default_capabilities()
-  }
-  require("lspconfig").starpls.setup {
-    capabilities = require('cmp_nvim_lsp').default_capabilities()
-  }
+  })
+  vim.lsp.enable('clangd')
+  vim.lsp.config('rust_analyzer', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
+  vim.lsp.enable('rust_analyzer')
+  vim.lsp.config('starpls', { capabilities =  require('cmp_nvim_lsp').default_capabilities() })
+  vim.lsp.enable('starpls')
 end
 
 lspconfig_setup()

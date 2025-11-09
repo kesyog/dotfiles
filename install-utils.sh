@@ -20,6 +20,7 @@ brew install \
   ripgrep \
   tokei \
   starship \
+  uv \
   zoxide \
   zplug \
 
@@ -29,6 +30,8 @@ $HOME/.scm_breeze/install.sh
 cargo install \
   termlight \
   tree-sitter-cli \
+
+uv tool install ty@latest
 
 if [ "$(uname)" == "Darwin" ]; then
     # Mac OS X

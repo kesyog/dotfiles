@@ -31,6 +31,7 @@ local function lspconfig_setup()
   vim.lsp.enable('rust_analyzer')
   vim.lsp.config('starpls', { capabilities =  require('cmp_nvim_lsp').default_capabilities() })
   vim.lsp.enable('starpls')
+  vim.lsp.enable('ty')
 end
 
 lspconfig_setup()

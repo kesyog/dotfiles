@@ -56,15 +56,18 @@ setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+
+# Local config, if present
+if [ -f $HOME/.zshrc_local ]; then
+  source $HOME/.zshrc_local
+fi
+
 if command -v nvim > /dev/null 2>&1; then
   export EDITOR='nvim'
 fi
 if command -v alacritty > /dev/null 2>&1; then
   export TERMINAL='alacritty'
 fi
-
-# Personal aliases
-[ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
 
 # ssh
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -160,7 +163,5 @@ else
   echo starship not installed
 fi
 
-# Local config, if present
-if [ -f $HOME/.zshrc_local ]; then
-  source $HOME/.zshrc_local
-fi
+# Personal aliases
+[ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases

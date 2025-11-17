@@ -8,6 +8,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup component add rust-analyzer
 brew install \
   bat \
+  bottom \
   difftastic \
   direnv \
   dtrx \
@@ -35,6 +36,8 @@ cargo install \
   termlight \
   tree-sitter-cli \
 
+cargo install --git https://github.com/kesyog/pathsearch.git
+
 uv tool install ty@latest
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -55,6 +58,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       zsh \
 
     chsh -s $(which zsh)
+
+    echo "pathsearch | dmenu "$@" | ${SHELL:-"/bin/sh"} &" > ~/.local/bin/dmenu_pathsearch.sh
+    chmod +x ~/.local/bin/dmenu_pathsearch.sh
 
     echo Logout and back in to make zsh the default shell
     echo Manually install clangd, pavucontrol, i3status-rust

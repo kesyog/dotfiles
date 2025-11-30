@@ -18,14 +18,18 @@ brew install \
   hyperfine \
   neovim \
   ripgrep \
-  tokei \
   starship \
+  tmux \
+  tokei \
+  urlview \
   uv \
   zoxide \
   zplug \
 
 git clone https://github.com/scmbreeze/scm_breeze.git $HOME/.scm_breeze
 $HOME/.scm_breeze/install.sh
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 cargo install \
   termlight \
@@ -47,7 +51,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
       i3 \
       plantuml \
       scrot \
-      tmux \
       xclip \
       zsh \
 

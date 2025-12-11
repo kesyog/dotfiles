@@ -183,6 +183,32 @@ vim.api.nvim_create_user_command('Rgh', function(opts)
     end
   end,
 { nargs = '?' })
+vim.api.nvim_create_user_command('Rgcmake', function(opts)
+    if opts.args == '' then
+      fzf.live_grep({
+        rg_opts = '--type cmake ' .. rg_default_args,
+      })
+    else
+      fzf.grep({
+        search = opts.fargs[1],
+        rg_opts = '--type cmake ' .. rg_default_args,
+      })
+    end
+  end,
+{ nargs = '?' })
+vim.api.nvim_create_user_command('Rgcmaked', function(opts)
+    if opts.args == '' then
+      fzf.live_grep({
+        rg_opts = '--type cmake ' .. rg_default_args,
+      })
+    else
+      fzf.grep({
+        search = "(" .. opts.fargs[1] .. " ",
+        rg_opts = '--type cmake ' .. rg_default_args,
+      })
+    end
+  end,
+{ nargs = '?' })
 
 vim.keymap.set('n', '<C-\\>g',
   function()

@@ -250,4 +250,6 @@ return {
       },
     },
   },
+  -- Follow symlinks
+  { "aymericbeaumet/vim-symlink", dependencies = { "moll/vim-bbye" } }
 }

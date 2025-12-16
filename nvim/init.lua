@@ -15,6 +15,8 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.list = true
+vim.opt.listchars = 'tab:▸·,trail:·'
 vim.opt.mouse = 'r'
 vim.opt.grepprg = 'rg --vimgrep --smart-case --follow'
 -- Put a shaded column at the 100-character mark

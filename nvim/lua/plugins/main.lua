@@ -86,11 +86,12 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    branch = 'main',
+    lazy = false,
     config = function()
-      local configs = require('nvim-treesitter.configs')
+      local ts = require('nvim-treesitter')
 
-      configs.setup({
-        ensure_installed = {
+      ts.install({
           'bash',
           'c',
           'cpp',
@@ -110,10 +111,24 @@ return {
           'swift',
           't32',
           'vimdoc',
+      })
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = {
+          'bash',
+          'bzl',
+          'c',
+          'cpp',
+          'diff',
+          'dockerfile',
+          'gitcommit',
+          'gitconfig',
+          'lua',
+          'proto',
+          'python',
+          'rust',
         },
-        sync_install = false,
-        highlight = { enable = true },
-        indent = { enable = false },
+        callback = function() vim.treesitter.start() end,
       })
     end,
   },

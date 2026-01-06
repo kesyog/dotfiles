@@ -102,7 +102,6 @@ return {
           'gitignore',
           'go',
           'java',
-          'jsonc', -- needed for neoconf.nvim
           'lua',
           'proto',
           'python',
